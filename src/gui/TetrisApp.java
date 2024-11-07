@@ -15,7 +15,10 @@ public class TetrisApp extends JFrame {
 	public static void main(String[] args) {
 		try {
 			UIManager.setLookAndFeel(new FlatDarculaLaf());
-		} catch (Exception e) { System.err.println("Failed to initialize FlatLaF"); }
+		} catch (Exception e) { 
+			System.err.println("Failed to initialize FlatLaF, using system default"); 
+			try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); } catch (Exception ignored) {}
+		}
 		new TetrisApp();
 	}
 	
@@ -39,11 +42,15 @@ public class TetrisApp extends JFrame {
 			if (reason == TOPOUT) {
 				//TODO: Leaderboard processing
 			}
-			CardLayout cl = (CardLayout) getContentPane().getLayout();
-			cl.show(getContentPane(), "menu");
+			showPage("menu");
 			remove(tetris);
 			makeTetris();
 		}
+	}
+
+	private void showPage(String name){
+		CardLayout cl = (CardLayout) getContentPane().getLayout();
+		cl.show(getContentPane(), name);
 	}
 	
 	private void makeTetris() {
@@ -66,36 +73,25 @@ public class TetrisApp extends JFrame {
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		
 		JButton startButton = new JButton("Start Tetris");
-		startButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CardLayout cl = (CardLayout) menuButtons.getParent().getLayout();
-				cl.show(menuButtons.getParent(), "game");
+		startButton.addActionListener(e -> {
+				showPage("game");
 				tetris.startGame();
 			}
-		});
+		);
 		startButton.setAlignmentX(CENTER_ALIGNMENT);
 		startButton.setPreferredSize(new Dimension(5*buttonUnit, buttonUnit));
 		menuButtons.add(startButton, gbc);
 		menuButtons.add(Box.createRigidArea(new Dimension(0, buttonUnit)), gbc);
 		
 		JButton rankingButton = new JButton("Leaderboards");
-		rankingButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CardLayout cl = (CardLayout) menuButtons.getParent().getLayout();
-				cl.show(menuButtons.getParent(), "leaderboard");
-			}
-		});
+		rankingButton.addActionListener(e -> showPage("leaderboard"));
 		rankingButton.setAlignmentX(CENTER_ALIGNMENT);
 		rankingButton.setPreferredSize(new Dimension(5*buttonUnit, buttonUnit));
 		menuButtons.add(rankingButton, gbc);
 		menuButtons.add(Box.createRigidArea(new Dimension(0, buttonUnit)), gbc);
 		
 		JButton exitButton = new JButton("Exit");
-		exitButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
+		exitButton.addActionListener(e -> System.exit(0));
 		exitButton.setAlignmentX(CENTER_ALIGNMENT);
 		exitButton.setPreferredSize(new Dimension(5*buttonUnit, buttonUnit));
 		menuButtons.add(exitButton, gbc);
