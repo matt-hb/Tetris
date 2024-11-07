@@ -47,13 +47,15 @@ public class TetrisPanel extends JPanel implements ActionListener {
 		timer = new Timer(50, this);
 		timer.setDelay(tetris.getDelayInMillis());
 		timer.start();
+		requestFocusInWindow();
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (!tetris.moveDown()) {
 			timer.stop();
-			// TODO: Death
+			CardLayout cl = (CardLayout) this.getParent().getLayout();
+			cl.show(this.getParent(), "menu");
 		}
 		timer.setDelay(tetris.getDelayInMillis());
 		score.setText("Score: " + tetris.getScore());
