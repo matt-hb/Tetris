@@ -1,7 +1,7 @@
 package tetris;
 
 import java.awt.Graphics;
-import java.util.Random;
+import java.util.*;
 
 public class Tetris {
 	private Board board;
@@ -10,13 +10,14 @@ public class Tetris {
 	private int pieceX, pieceY;
 	private int score, linesClearedOnLevel, linesClearedTotal;
 	private int gameSpeed;
-	private static Random randomGen;
+	private static List<Tetromino.Shape> pieceBag;
+	private static int pieceBagIndex;
 		
 	public Tetris() {
 		board = new Board();
 		score = linesClearedTotal = linesClearedOnLevel = 0;
 		gameSpeed = 1;
-		nextPiece = new Tetromino(randomGen.nextInt(7));
+		nextPiece = new Tetromino(pullFromPieceBag());
 		newPiece();
 	}
 	
@@ -92,7 +93,7 @@ public class Tetris {
 	public void drawTetris(Graphics g, int squareSize) {
 		board.drawBoard(g, squareSize);
 		piece.drawPiece(g, pieceX, pieceY, squareSize);		
-		nextPiece.drawPiece(g, board.getWidth()/2+3, board.getHeight()/4+1, 2*squareSize);
+		nextPiece.drawPiece(g, board.getWidth()/2+3, board.getHeight()/4+1, (int) (1.5*squareSize));
 	}
 	
 	private boolean tryMove(int newX, int newY) {
@@ -138,14 +139,25 @@ public class Tetris {
 		pieceX = board.getWidth()/2-1;
 		pieceY = board.getHeight();
 		piece = nextPiece;
-		nextPiece = new Tetromino(randomGen.nextInt(7));
+		nextPiece = new Tetromino(pullFromPieceBag());
 		
 		while (board.collides(piece, pieceX, pieceY)) {
 			pieceY++;
 		}
 	}
 
+	private static Tetromino.Shape pullFromPieceBag () {
+		Tetromino.Shape out = pieceBag.get(pieceBagIndex++);
+		if (pieceBagIndex == Tetromino.Shape.values().length) {
+			pieceBagIndex = 0;
+			Collections.shuffle(pieceBag);
+		}
+		return out;
+	}
+
 	static {
-		randomGen = new Random();
+		pieceBag = new ArrayList<>(List.of(Tetromino.Shape.values()));
+		Collections.shuffle(pieceBag);
+		pieceBagIndex = 0;
 	}
 }
