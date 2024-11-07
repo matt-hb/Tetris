@@ -6,7 +6,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-@SuppressWarnings("serial")
 public class TetrisPanel extends JPanel implements ActionListener {
 	private Tetris tetris;
 	private int squareSize;
