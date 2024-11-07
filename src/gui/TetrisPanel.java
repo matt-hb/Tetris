@@ -62,7 +62,7 @@ public class TetrisPanel extends JPanel implements ActionListener {
 		repaint(0,0,getWidth(),getHeight());
 	}
 	
-	private class TetrisListener implements KeyListener {
+	private class TetrisListener extends KeyAdapter {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			switch(e.getKeyCode()) {
@@ -74,9 +74,5 @@ public class TetrisPanel extends JPanel implements ActionListener {
 			}
 			repaint();
 		}
-		@Override
-		public void keyTyped(KeyEvent e) { }
-		@Override
-		public void keyReleased(KeyEvent e) { }
 	}
 }
