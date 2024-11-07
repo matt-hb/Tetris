@@ -13,6 +13,7 @@ public class TetrisApp extends JFrame {
 	private TetrisPanel tetris;
 
 	public static void main(String[] args) {
+		System.setProperty("sun.java2d.opengl", "true");
 		try {
 			UIManager.setLookAndFeel(new FlatDarculaLaf());
 		} catch (Exception e) { 
