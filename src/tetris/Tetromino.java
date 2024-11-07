@@ -9,8 +9,8 @@ public class Tetromino {
 	public enum Shape {
 		I, J, L, S, Z, T, O
 	}
-	private static HashMap<Shape, Color> shapeColors = new HashMap<Shape, Color>();
-	private static HashMap<Shape, List<Point>> shapeMinos = new HashMap<Shape, List<Point>>();
+	private static EnumMap<Shape, Color> shapeColors = new EnumMap<>(Shape.class);
+	private static EnumMap<Shape, List<Point>> shapeMinos = new EnumMap<>(Shape.class);
 
 	private List<Point> minos;
 	private Color color;
@@ -82,12 +82,12 @@ public class Tetromino {
 		shapeColors.put(Shape.T, new Color(255, 121, 198));
 		shapeColors.put(Shape.O, new Color(241, 250, 140));
 				
-		shapeMinos.put(Shape.I, new ArrayList<Point>(List.of(new Point(-1,0), new Point(0,0), new Point(1,0), new Point(2,0))));		
-		shapeMinos.put(Shape.J, new ArrayList<Point>(List.of(new Point(-1,1), new Point(-1,0), new Point(0,0), new Point(1,0))));
-		shapeMinos.put(Shape.L, new ArrayList<Point>(List.of(new Point(-1,0), new Point(0,0), new Point(1,0), new Point(1,1))));
-		shapeMinos.put(Shape.S, new ArrayList<Point>(List.of(new Point(-1,0), new Point(0,0), new Point(0,1), new Point(1,1))));
-		shapeMinos.put(Shape.Z, new ArrayList<Point>(List.of(new Point(-1,1), new Point(0,1), new Point(0,0), new Point(1,0))));
-		shapeMinos.put(Shape.T, new ArrayList<Point>(List.of(new Point(-1,0), new Point(0,0), new Point(1,0), new Point(0,1))));
-		shapeMinos.put(Shape.O, new ArrayList<Point>(List.of(new Point(0,0), new Point(1,0), new Point(0,1), new Point(1,1))));
+		shapeMinos.put(Shape.I, new ArrayList<>(List.of(new Point(-1,0), new Point(0,0), new Point(1,0), new Point(2,0))));		
+		shapeMinos.put(Shape.J, new ArrayList<>(List.of(new Point(-1,1), new Point(-1,0), new Point(0,0), new Point(1,0))));
+		shapeMinos.put(Shape.L, new ArrayList<>(List.of(new Point(-1,0), new Point(0,0), new Point(1,0), new Point(1,1))));
+		shapeMinos.put(Shape.S, new ArrayList<>(List.of(new Point(-1,0), new Point(0,0), new Point(0,1), new Point(1,1))));
+		shapeMinos.put(Shape.Z, new ArrayList<>(List.of(new Point(-1,1), new Point(0,1), new Point(0,0), new Point(1,0))));
+		shapeMinos.put(Shape.T, new ArrayList<>(List.of(new Point(-1,0), new Point(0,0), new Point(1,0), new Point(0,1))));
+		shapeMinos.put(Shape.O, new ArrayList<>(List.of(new Point(0,0), new Point(1,0), new Point(0,1), new Point(1,1))));
 	}
 }
