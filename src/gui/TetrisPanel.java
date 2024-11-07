@@ -42,7 +42,7 @@ public class TetrisPanel extends JPanel implements ActionListener {
 	}
 	
 	public void startGame() {
-		squareSize = (int) Math.floor(this.getHeight() / tetris.getBoard().getHeight());
+		squareSize = Math.min(this.getHeight() / tetris.getBoard().getHeight(), this.getWidth() / tetris.getBoard().getWidth());
 		
 		timer = new Timer(50, this);
 		timer.setDelay(tetris.getDelayInMillis());
