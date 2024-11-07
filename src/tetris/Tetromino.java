@@ -6,7 +6,7 @@ import java.awt.Point;
 import java.util.*;
 
 public class Tetromino {
-	private enum Shape {
+	public enum Shape {
 		I, J, L, S, Z, T, O
 	}
 	private static HashMap<Shape, Color> shapeColors = new HashMap<Shape, Color>();
@@ -20,13 +20,6 @@ public class Tetromino {
 		minos = shapeMinos.get(shape);
 		color = shapeColors.get(shape);
 		this.shape = shape;
-	}
-	
-	public Tetromino(int i) {
-		Shape newShape = Shape.values()[i];
-		minos = shapeMinos.get(newShape);
-		color = shapeColors.get(newShape);
-		shape = newShape;
 	}
 		
 	public List<Point> getMinos(){
