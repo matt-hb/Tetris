@@ -6,6 +6,8 @@ import java.awt.event.*;
 import com.formdev.flatlaf.FlatDarculaLaf;
 
 public class TetrisApp extends JFrame {
+	public static final int TOPOUT = 0;
+	public static final int QUIT = 1;
 	private static final int WINDOW_WIDTH = 600;
 	private static final int WINDOW_HEIGHT = 900;
 	private TetrisPanel tetris;
@@ -24,16 +26,28 @@ public class TetrisApp extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		CardLayout cl = new CardLayout();
-		setLayout(cl);
+		this.setLayout(cl);
 		
 		makeMenuButtons();
 		makeTetris();
 		
 		setVisible(true);
 	}
+
+	public void returnToMainMenu(int reason){
+		if (reason == TOPOUT || reason == QUIT){
+			if (reason == TOPOUT) {
+				//TODO: Leaderboard processing
+			}
+			CardLayout cl = (CardLayout) getContentPane().getLayout();
+			cl.show(getContentPane(), "menu");
+			remove(tetris);
+			makeTetris();
+		}
+	}
 	
 	private void makeTetris() {
-		tetris = new TetrisPanel();
+		tetris = new TetrisPanel(this);
 		tetris.setPreferredSize(getSize());
 		add(tetris, "game");
 		pack();
@@ -67,6 +81,8 @@ public class TetrisApp extends JFrame {
 		JButton rankingButton = new JButton("Leaderboards");
 		rankingButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				CardLayout cl = (CardLayout) menuButtons.getParent().getLayout();
+				cl.show(menuButtons.getParent(), "leaderboard");
 			}
 		});
 		rankingButton.setAlignmentX(CENTER_ALIGNMENT);

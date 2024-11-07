@@ -7,6 +7,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class TetrisPanel extends JPanel implements ActionListener {
+	private TetrisApp parent;
 	private Tetris tetris;
 	private int squareSize;
 	private Timer timer;
@@ -14,7 +15,8 @@ public class TetrisPanel extends JPanel implements ActionListener {
 	private JLabel linesTotal;
 	private JLabel linesRemaining;
 	
-	public TetrisPanel() {
+	public TetrisPanel(TetrisApp p) {
+		parent = p;
 		tetris = new Tetris();
 		setFocusable(true);
 		
@@ -54,8 +56,7 @@ public class TetrisPanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (!tetris.moveDown()) {
 			timer.stop();
-			CardLayout cl = (CardLayout) this.getParent().getLayout();
-			cl.show(this.getParent(), "menu");
+			parent.returnToMainMenu(TetrisApp.TOPOUT);
 		}
 		timer.setDelay(tetris.getDelayInMillis());
 		score.setText("Score: " + tetris.getScore());
