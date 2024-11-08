@@ -33,6 +33,10 @@ public class Tetromino {
 	public Color getColor() {
 		return color;
 	}
+
+	public boolean isShape(Shape s) {
+		return shape == s;
+	}
 	
 	public Tetromino rotatedLeft() {
 		if (shape == Shape.O) return this;
@@ -58,7 +62,7 @@ public class Tetromino {
 	
 	public void drawPiece(Graphics g, int x, int y, int squareSize) {
 		for (Point mino : minos) {
-			drawMino(g, (x + mino.x)*squareSize, (y + mino.y)*squareSize, this.color, squareSize);
+			drawMino(g, x + mino.x*squareSize, y + mino.y*squareSize, this.color, squareSize);
 		}
 	}
 	

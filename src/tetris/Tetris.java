@@ -92,8 +92,14 @@ public class Tetris {
 	
 	public void drawTetris(Graphics g, int squareSize) {
 		board.drawBoard(g, squareSize);
-		piece.drawPiece(g, pieceX, pieceY, squareSize);		
-		nextPiece.drawPiece(g, board.getWidth()/2+3, board.getHeight()/4+1, (int) (1.5*squareSize));
+		piece.drawPiece(g, pieceX*squareSize, pieceY*squareSize, squareSize);		
+		// nextPiece.drawPiece(g, board.getWidth()/2+3, board.getHeight()/4+1, (int) (1.5*squareSize));
+	}
+
+	public void drawNextPiece(Graphics g, int squareSize) {
+		if (nextPiece.isShape(Tetromino.Shape.O)) nextPiece.drawPiece(g, squareSize, squareSize, squareSize);
+		else if (nextPiece.isShape(Tetromino.Shape.I)) nextPiece.drawPiece(g, squareSize, 3*squareSize/2, squareSize);
+		else nextPiece.drawPiece(g, 3*squareSize/2, squareSize, squareSize);
 	}
 	
 	private boolean tryMove(int newX, int newY) {
