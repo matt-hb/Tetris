@@ -2,7 +2,6 @@ package gui;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import com.formdev.flatlaf.FlatDarculaLaf;
 
 public class TetrisApp extends JFrame {
@@ -18,7 +17,7 @@ public class TetrisApp extends JFrame {
 			UIManager.setLookAndFeel(new FlatDarculaLaf());
 		} catch (Exception e) { 
 			System.err.println("Failed to initialize FlatLaF, using system default"); 
-			try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); } catch (Exception ignored) {}
+			try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); } catch (Exception ignored) { /*ignored*/ }
 		}
 		new TetrisApp();
 	}
