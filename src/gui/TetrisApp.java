@@ -43,13 +43,13 @@ public class TetrisApp extends JFrame {
 			if (reason == TOPOUT) {
 				//TODO: Leaderboard processing
 			}
-			showPage("menu");
+			changeToPage("menu");
 			remove(tetris);
 			makeTetris();
 		}
 	}
 
-	private void showPage(String name){
+	private void changeToPage(String name){
 		CardLayout cl = (CardLayout) getContentPane().getLayout();
 		cl.show(getContentPane(), name);
 	}
@@ -75,7 +75,7 @@ public class TetrisApp extends JFrame {
 		
 		JButton startButton = new JButton("Start Tetris");
 		startButton.addActionListener(e -> {
-				showPage("game");
+				changeToPage("game");
 				tetris.startGame();
 			}
 		);
@@ -85,7 +85,7 @@ public class TetrisApp extends JFrame {
 		menuButtons.add(Box.createRigidArea(new Dimension(0, buttonUnit)), gbc);
 		
 		JButton rankingButton = new JButton("Leaderboards");
-		rankingButton.addActionListener(e -> showPage("leaderboard"));
+		rankingButton.addActionListener(e -> changeToPage("leaderboard"));
 		rankingButton.setAlignmentX(CENTER_ALIGNMENT);
 		rankingButton.setPreferredSize(new Dimension(5*buttonUnit, buttonUnit));
 		menuButtons.add(rankingButton, gbc);
