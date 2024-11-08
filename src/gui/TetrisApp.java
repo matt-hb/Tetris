@@ -71,7 +71,10 @@ public class TetrisApp extends JFrame {
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
 		gbc.anchor = GridBagConstraints.CENTER;
 		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.weighty = 1;
+		menuButtons.add(Box.createRigidArea(new Dimension()), gbc);
 		
+		gbc.weighty = 0.1;
 		JButton startButton = new JButton("Start Tetris");
 		startButton.addActionListener(e -> {
 				changeToPage("game");
@@ -81,20 +84,21 @@ public class TetrisApp extends JFrame {
 		startButton.setAlignmentX(CENTER_ALIGNMENT);
 		startButton.setPreferredSize(new Dimension(5*buttonUnit, buttonUnit));
 		menuButtons.add(startButton, gbc);
-		menuButtons.add(Box.createRigidArea(new Dimension(0, buttonUnit)), gbc);
 		
 		JButton rankingButton = new JButton("Leaderboards");
 		rankingButton.addActionListener(e -> changeToPage("leaderboard"));
 		rankingButton.setAlignmentX(CENTER_ALIGNMENT);
 		rankingButton.setPreferredSize(new Dimension(5*buttonUnit, buttonUnit));
 		menuButtons.add(rankingButton, gbc);
-		menuButtons.add(Box.createRigidArea(new Dimension(0, buttonUnit)), gbc);
 		
 		JButton exitButton = new JButton("Exit");
 		exitButton.addActionListener(e -> System.exit(0));
 		exitButton.setAlignmentX(CENTER_ALIGNMENT);
 		exitButton.setPreferredSize(new Dimension(5*buttonUnit, buttonUnit));
 		menuButtons.add(exitButton, gbc);
+
+		gbc.weighty = 1;
+		menuButtons.add(Box.createRigidArea(new Dimension()), gbc);
 		
 		add(menuButtons, "menu");
 	}
