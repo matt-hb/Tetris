@@ -33,6 +33,7 @@ public class TetrisApp extends JFrame {
 		
 		makeMenuButtons();
 		makeTetris();
+		makeLeaderBoard();
 		
 		setVisible(true);
 	}
@@ -40,7 +41,7 @@ public class TetrisApp extends JFrame {
 	public void returnToMainMenu(int reason){
 		if (reason == TOPOUT || reason == QUIT){
 			if (reason == TOPOUT) {
-				//TODO: Leaderboard processing
+				//TODO
 			}
 			changeToPage("menu");
 			remove(tetris);
@@ -53,18 +54,11 @@ public class TetrisApp extends JFrame {
 		cl.show(getContentPane(), name);
 	}
 	
-	private void makeTetris() {
-		tetris = new TetrisPanel(this);
-		tetris.setPreferredSize(getSize());
-		add(tetris, "game");
-		pack();
-	}
-
 	private void makeMenuButtons() {
 		JPanel menuButtons = new JPanel();
 		menuButtons.setLayout(new GridBagLayout());
 		menuButtons.setBackground(new Color(40, 42, 54).darker());
-
+		
 		int buttonUnit = WINDOW_HEIGHT/20;
 		
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -77,9 +71,9 @@ public class TetrisApp extends JFrame {
 		gbc.weighty = 0.1;
 		JButton startButton = new JButton("Start Tetris");
 		startButton.addActionListener(e -> {
-				changeToPage("game");
-				tetris.startGame();
-			}
+			changeToPage("game");
+			tetris.startGame();
+		}
 		);
 		startButton.setAlignmentX(CENTER_ALIGNMENT);
 		startButton.setPreferredSize(new Dimension(5*buttonUnit, buttonUnit));
@@ -96,10 +90,21 @@ public class TetrisApp extends JFrame {
 		exitButton.setAlignmentX(CENTER_ALIGNMENT);
 		exitButton.setPreferredSize(new Dimension(5*buttonUnit, buttonUnit));
 		menuButtons.add(exitButton, gbc);
-
+		
 		gbc.weighty = 1;
 		menuButtons.add(Box.createRigidArea(new Dimension()), gbc);
 		
 		add(menuButtons, "menu");
+	}
+
+	private void makeTetris() {
+		tetris = new TetrisPanel(this);
+		tetris.setPreferredSize(getSize());
+		add(tetris, "game");
+		pack();
+	}
+
+	private void makeLeaderBoard() {
+		//TODO
 	}
 }
