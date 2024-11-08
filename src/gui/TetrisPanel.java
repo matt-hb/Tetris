@@ -70,7 +70,7 @@ public class TetrisPanel extends JPanel implements ActionListener {
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
 		gbc.anchor = GridBagConstraints.CENTER;
 		gbc.fill = GridBagConstraints.HORIZONTAL;
-		gbc.weighty = 0.1;
+		gbc.weighty = 0.2;
 
 		score = new JLabel("", SwingConstants.CENTER);
 		linesTotal = new JLabel("", SwingConstants.CENTER);
