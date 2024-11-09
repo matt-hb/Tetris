@@ -2,7 +2,10 @@ package gui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+
 import com.formdev.flatlaf.FlatDarculaLaf;
+import javax.sound.sampled.*;
 
 public class TetrisApp extends JFrame {
 	public static final int TOPOUT = 0;
@@ -10,6 +13,9 @@ public class TetrisApp extends JFrame {
 	private static final int WINDOW_WIDTH = 600;
 	private static final int WINDOW_HEIGHT = 900;
 	private TetrisPanel tetris;
+	private Clip menuSong;
+	private Clip gameSong;
+	private Clip failSound;
 
 	public static void main(String[] args) {
 		System.setProperty("sun.java2d.opengl", "true");
@@ -35,16 +41,25 @@ public class TetrisApp extends JFrame {
 		makeTetris();
 		makeLeaderBoard();
 		
+		initSounds();
+		
 		setVisible(true);
+		menuSong.loop(Clip.LOOP_CONTINUOUSLY);
 	}
 
 	public void returnToMainMenu(int reason){
 		if (reason == TOPOUT || reason == QUIT_FROM_GAME){
+			if (gameSong.isRunning()) gameSong.stop();
 			if (reason == TOPOUT) {
+				failSound.setMicrosecondPosition(0);
+				failSound.start();
+				try { Thread.sleep(2000); } catch(InterruptedException e) { /*just wait it out*/ }
 				//TODO
 			}
 			remove(tetris);
 			makeTetris();
+			menuSong.setMicrosecondPosition(0);
+			menuSong.loop(Clip.LOOP_CONTINUOUSLY);
 		}
 		changeToPage("menu");
 	}
@@ -73,6 +88,9 @@ public class TetrisApp extends JFrame {
 		startButton.addActionListener(e -> {
 			changeToPage("game");
 			tetris.startGame();
+			if (menuSong.isRunning()) menuSong.stop();
+			gameSong.setMicrosecondPosition(0);
+			gameSong.loop(Clip.LOOP_CONTINUOUSLY);
 		}
 		);
 		startButton.setAlignmentX(CENTER_ALIGNMENT);
@@ -106,5 +124,20 @@ public class TetrisApp extends JFrame {
 
 	private void makeLeaderBoard() {
 		//TODO
+	}
+
+	private void initSounds() {
+		try {
+			menuSong = AudioSystem.getClip();
+			menuSong.open(AudioSystem.getAudioInputStream(new File("asset/menu.wav")));
+
+			gameSong = AudioSystem.getClip();
+			gameSong.open(AudioSystem.getAudioInputStream(new File("asset/ingame.wav")));
+
+			failSound = AudioSystem.getClip();
+			failSound.open(AudioSystem.getAudioInputStream(new File("asset/gameover.wav")));
+		} catch (Exception e) {
+			System.err.println("Error initializing music");
+		}
 	}
 }
