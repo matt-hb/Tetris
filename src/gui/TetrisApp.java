@@ -6,7 +6,7 @@ import com.formdev.flatlaf.FlatDarculaLaf;
 
 public class TetrisApp extends JFrame {
 	public static final int TOPOUT = 0;
-	public static final int QUIT = 1;
+	public static final int QUIT_FROM_GAME = 1;
 	private static final int WINDOW_WIDTH = 600;
 	private static final int WINDOW_HEIGHT = 900;
 	private TetrisPanel tetris;
@@ -39,14 +39,14 @@ public class TetrisApp extends JFrame {
 	}
 
 	public void returnToMainMenu(int reason){
-		if (reason == TOPOUT || reason == QUIT){
+		if (reason == TOPOUT || reason == QUIT_FROM_GAME){
 			if (reason == TOPOUT) {
 				//TODO
 			}
-			changeToPage("menu");
 			remove(tetris);
 			makeTetris();
 		}
+		changeToPage("menu");
 	}
 
 	private void changeToPage(String name){
