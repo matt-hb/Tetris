@@ -88,7 +88,7 @@ public class TetrisPanel extends JPanel implements ActionListener {
 		TitledBorder tb = BorderFactory.createTitledBorder(mb, "<html><b>Next Piece:</b></html>");
 		tb.setTitleColor(Color.WHITE);
 		next.setBorder(tb);
-		next.setPreferredSize(new Dimension(4*squareSize, 4*squareSize));
+		next.setPreferredSize(new Dimension(5*squareSize, 5*squareSize));
 		infoPanel.add(next, gbc);
 
 		infoPanel.add(Box.createRigidArea(new Dimension()), gbc);
