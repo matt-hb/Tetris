@@ -10,7 +10,7 @@ import javax.swing.border.*;
 import java.util.List;
 
 public class TetrisPanel extends JPanel implements ActionListener {
-	private TetrisApp parent;
+	private TetrisApp frame;
 	private Tetris tetris;
 	private int squareSize;
 	private Timer timer;
@@ -19,11 +19,11 @@ public class TetrisPanel extends JPanel implements ActionListener {
 	private JLabel linesRemaining;
 	
 	public TetrisPanel(TetrisApp p) {
-		parent = p;
+		frame = p;
 		tetris = new Tetris();
 		setFocusable(true);
 		setLayout(new BorderLayout());
-		squareSize = Math.min(parent.getHeight() / tetris.getBoard().getHeight(), parent.getWidth() / tetris.getBoard().getWidth());
+		squareSize = Math.min(frame.getHeight() / tetris.getBoard().getHeight(), frame.getWidth() / tetris.getBoard().getWidth());
 
 		initInfoPanel();
 		
@@ -51,7 +51,7 @@ public class TetrisPanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (!tetris.moveDown()) {
 			timer.stop();
-			parent.returnToMainMenu(TetrisApp.TOPOUT);
+			frame.returnToMainMenu(TetrisApp.TOPOUT);
 		}
 		timer.setDelay(tetris.getDelayInMillis());
 		score.setText("<html><b>Score: " + tetris.getScore() + "</b></html>");
@@ -95,7 +95,7 @@ public class TetrisPanel extends JPanel implements ActionListener {
 
 		gbc.weighty = 0.1;
 		JButton backButton = new JButton("Back");
-		backButton.addActionListener(e -> parent.returnToMainMenu(TetrisApp.QUIT_FROM_GAME));
+		backButton.addActionListener(e -> frame.returnToMainMenu(TetrisApp.QUIT_FROM_GAME));
 		backButton.setPreferredSize(new Dimension(4*squareSize, 3*squareSize/2));
 		infoPanel.add(backButton, gbc);
 
