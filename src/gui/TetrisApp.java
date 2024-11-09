@@ -2,6 +2,8 @@ package gui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
@@ -32,7 +34,7 @@ public class TetrisApp extends JFrame {
 		setTitle("Tetris HBM");
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		setResizable(false);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setLocationRelativeTo(null);
 		CardLayout cl = new CardLayout();
 		this.setLayout(cl);
@@ -42,6 +44,13 @@ public class TetrisApp extends JFrame {
 		makeLeaderBoard();
 		
 		initSounds();
+		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				close();
+			}
+		});
 		
 		setVisible(true);
 		menuSong.loop(Clip.LOOP_CONTINUOUSLY);
@@ -104,7 +113,7 @@ public class TetrisApp extends JFrame {
 		menuButtons.add(rankingButton, gbc);
 		
 		JButton exitButton = new JButton("Exit");
-		exitButton.addActionListener(e -> System.exit(0));
+		exitButton.addActionListener(e -> close());
 		exitButton.setAlignmentX(CENTER_ALIGNMENT);
 		exitButton.setPreferredSize(new Dimension(5*buttonUnit, buttonUnit));
 		menuButtons.add(exitButton, gbc);
@@ -139,5 +148,12 @@ public class TetrisApp extends JFrame {
 		} catch (Exception e) {
 			System.err.println("Error initializing music");
 		}
+	}
+
+	private void close() {
+		menuSong.close();
+		gameSong.close();
+		failSound.close();
+		System.exit(0);
 	}
 }
