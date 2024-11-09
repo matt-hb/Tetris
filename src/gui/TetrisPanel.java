@@ -5,8 +5,7 @@ import tetris.Tetris;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.border.MatteBorder;
-import javax.swing.border.TitledBorder;
+import javax.swing.border.*;
 
 import java.util.List;
 
