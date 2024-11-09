@@ -95,7 +95,7 @@ public class TetrisPanel extends JPanel implements ActionListener {
 
 		gbc.weighty = 0.1;
 		JButton backButton = new JButton("Back");
-		backButton.addActionListener(e -> parent.returnToMainMenu(TetrisApp.QUIT));
+		backButton.addActionListener(e -> parent.returnToMainMenu(TetrisApp.QUIT_FROM_GAME));
 		backButton.setPreferredSize(new Dimension(4*squareSize, 3*squareSize/2));
 		infoPanel.add(backButton, gbc);
 
