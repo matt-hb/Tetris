@@ -63,7 +63,7 @@ public class TetrisApp extends JFrame {
 				failSound.setMicrosecondPosition(0);
 				failSound.start();
 				try { Thread.sleep(2000); } catch(InterruptedException e) { /*just wait it out*/ }
-				//TODO
+				//TODO Leaderboard
 			}
 			remove(tetris);
 			makeTetris();
@@ -93,7 +93,7 @@ public class TetrisApp extends JFrame {
 		menuButtons.add(Box.createRigidArea(new Dimension()), gbc);
 		
 		gbc.weighty = 0.1;
-		JButton startButton = new JButton("Start Tetris");
+		JButton startButton = new JButton("<html><h1>Start Tetris</h1></html>");
 		startButton.addActionListener(e -> {
 			changeToPage("game");
 			tetris.startGame();
@@ -106,13 +106,13 @@ public class TetrisApp extends JFrame {
 		startButton.setPreferredSize(new Dimension(5*buttonUnit, buttonUnit));
 		menuButtons.add(startButton, gbc);
 		
-		JButton rankingButton = new JButton("Leaderboards");
+		JButton rankingButton = new JButton("<html><h1>Leaderboards</h1></html>");
 		rankingButton.addActionListener(e -> changeToPage("leaderboard"));
 		rankingButton.setAlignmentX(CENTER_ALIGNMENT);
 		rankingButton.setPreferredSize(new Dimension(5*buttonUnit, buttonUnit));
 		menuButtons.add(rankingButton, gbc);
 		
-		JButton exitButton = new JButton("Exit");
+		JButton exitButton = new JButton("<html><h1>Exit</h1></html>");
 		exitButton.addActionListener(e -> close());
 		exitButton.setAlignmentX(CENTER_ALIGNMENT);
 		exitButton.setPreferredSize(new Dimension(5*buttonUnit, buttonUnit));
