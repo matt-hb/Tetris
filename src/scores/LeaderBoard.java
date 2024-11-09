@@ -18,7 +18,7 @@ public class LeaderBoard {
         return lb.get(index);
     }
 
-    public void addHighScore(HighScore s) {
+    public void add(HighScore s) {
         lb.add(s);
         Collections.sort(lb);
     }
