@@ -74,7 +74,8 @@ public class TetrisPanel extends JPanel implements ActionListener {
 		score = new JLabel("", SwingConstants.CENTER);
 		linesTotal = new JLabel("", SwingConstants.CENTER);
 		linesRemaining = new JLabel("", SwingConstants.CENTER);
-		MatteBorder mb = BorderFactory.createMatteBorder(Math.floorDiv(squareSize, 10), Math.floorDiv(squareSize, 10), 3*Math.floorDiv(squareSize, 10), Math.floorDiv(squareSize, 10), Color.WHITE);
+		int bw = Math.floorDiv(squareSize, 10);
+		MatteBorder mb = BorderFactory.createMatteBorder(bw, bw, 3*bw, bw, Color.WHITE);
 		for (JLabel label : List.of(score,linesTotal,linesRemaining)){
 			label.setForeground(Color.WHITE);
 			label.setPreferredSize(new Dimension(4*squareSize, 3*squareSize/2));
