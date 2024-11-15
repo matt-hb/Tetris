@@ -120,7 +120,10 @@ public class TetrisPanel extends JPanel implements ActionListener {
 		@Override
 		public void paintComponent(Graphics g){
 			super.paintComponent(g);
-			tetris.drawNextPiece(g, squareSize);
+			Graphics2D g2d = (Graphics2D) g.create();
+			g2d.translate(0, this.getHeight());
+			g2d.scale(1, -1);
+			tetris.drawNextPiece(g2d, squareSize);
 		}
 	}
 }
