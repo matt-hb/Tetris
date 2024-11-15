@@ -15,9 +15,19 @@ public class LeaderBoardPanel extends JPanel {
         lb = new LeaderBoard();
         setLayout(new BorderLayout());
         setBackground(frame.getBackground());
+        initPanel();
     }
 
-    public void initPanel() {
+    public void addNewScore(String name, int score){
+        lb.add(new HighScore(name, score));
+    }
+
+    public void refresh(){
+        removeAll();
+        initPanel();
+    }
+
+    private void initPanel() {
         JPanel entries = new JPanel();
         entries.setLayout(new GridBagLayout());
         int entryHeight = frame.getWidth() * 8/10 / 10; // height of each entry

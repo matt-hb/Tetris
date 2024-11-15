@@ -146,7 +146,6 @@ public class TetrisApp extends JFrame {
 		leaderBoard = new LeaderBoardPanel(this);
 		leaderBoard.setPreferredSize(getSize());
 		add(leaderBoard, "leaderboard");
-		leaderBoard.initPanel();
 	}
 
 	private void initSounds() {
