@@ -16,12 +16,14 @@ public class TetrisApp extends JFrame {
 	private static final int WINDOW_WIDTH = 600;
 	private static final int WINDOW_HEIGHT = 900;
 	private TetrisPanel tetris;
+	private LeaderBoardPanel leaderBoard;
 	private Clip menuSong;
 	private Clip gameSong;
 	private Clip failSound;
 
 	public static void main(String[] args) {
 		System.setProperty("sun.java2d.opengl", "true");
+
 		try {
 			UIManager.setLookAndFeel(new FlatDarculaLaf());
 		} catch (Exception e) { 
@@ -37,15 +39,16 @@ public class TetrisApp extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setLocationRelativeTo(null);
-		CardLayout cl = new CardLayout();
-		this.setLayout(cl);
+		setLayout(new CardLayout());
+
+		initSounds();
 		
 		makeMenuButtons();
 		makeTetris();
 		makeLeaderBoard();
-		
-		initSounds();
-		
+
+		changeToPage("menu");
+
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -91,7 +94,7 @@ public class TetrisApp extends JFrame {
 		gbc.anchor = GridBagConstraints.CENTER;
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 
-		gbc.weighty = 1;
+		gbc.weighty = 0.8;
 		menuButtons.add(Box.createRigidArea(new Dimension()), gbc);
 		
 		gbc.weighty = 0.5;
@@ -126,7 +129,7 @@ public class TetrisApp extends JFrame {
 		exitButton.setPreferredSize(new Dimension(5*buttonUnit, buttonUnit));
 		menuButtons.add(exitButton, gbc);
 		
-		gbc.weighty = 0.8;
+		gbc.weighty = 1;
 		menuButtons.add(Box.createRigidArea(new Dimension()), gbc);
 		
 		add(menuButtons, "menu");
@@ -140,7 +143,10 @@ public class TetrisApp extends JFrame {
 	}
 
 	private void makeLeaderBoard() {
-		//TODO
+		leaderBoard = new LeaderBoardPanel(this);
+		leaderBoard.setPreferredSize(getSize());
+		add(leaderBoard, "leaderboard");
+		leaderBoard.initPanel();
 	}
 
 	private void initSounds() {
