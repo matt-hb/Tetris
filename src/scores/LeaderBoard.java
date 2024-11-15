@@ -23,6 +23,10 @@ public class LeaderBoard {
         Collections.sort(lb);
     }
 
+    public int size() {
+        return lb.size();
+    }
+
     public void readFromJSON(String filename) {
         //TODO
     }
