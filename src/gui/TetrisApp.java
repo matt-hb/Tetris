@@ -12,6 +12,7 @@ import javax.sound.sampled.*;
 public class TetrisApp extends JFrame {
 	public static final int TOPOUT = 0;
 	public static final int QUIT_FROM_GAME = 1;
+	public static final int QUIT_FROM_LEADERBOARD = 2;
 	private static final int WINDOW_WIDTH = 600;
 	private static final int WINDOW_HEIGHT = 900;
 	private TetrisPanel tetris;
