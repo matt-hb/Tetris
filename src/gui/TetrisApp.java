@@ -89,9 +89,16 @@ public class TetrisApp extends JFrame {
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
 		gbc.anchor = GridBagConstraints.CENTER;
 		gbc.fill = GridBagConstraints.HORIZONTAL;
+
 		gbc.weighty = 1;
 		menuButtons.add(Box.createRigidArea(new Dimension()), gbc);
 		
+		gbc.weighty = 0.5;
+		ImageIcon titleImage = new ImageIcon("asset/title.png");
+		JLabel title = new JLabel( new ImageIcon(titleImage.getImage().getScaledInstance(5* buttonUnit, buttonUnit, Image.SCALE_SMOOTH)));
+		title.setPreferredSize(new Dimension(5*buttonUnit, buttonUnit));
+		menuButtons.add(title, gbc);
+
 		gbc.weighty = 0.1;
 		JButton startButton = new JButton("<html><h1>Start Tetris</h1></html>");
 		startButton.addActionListener(e -> {
@@ -118,7 +125,7 @@ public class TetrisApp extends JFrame {
 		exitButton.setPreferredSize(new Dimension(5*buttonUnit, buttonUnit));
 		menuButtons.add(exitButton, gbc);
 		
-		gbc.weighty = 1;
+		gbc.weighty = 0.8;
 		menuButtons.add(Box.createRigidArea(new Dimension()), gbc);
 		
 		add(menuButtons, "menu");
