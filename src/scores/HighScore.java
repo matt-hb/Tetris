@@ -3,6 +3,11 @@ package scores;
 public class HighScore implements Comparable<HighScore> {
     private String name;
     private int score;
+
+    public HighScore(){
+        name = "";
+        score = 0;
+    }
     
     public HighScore(String n, int s){
         name = n;
@@ -10,20 +15,17 @@ public class HighScore implements Comparable<HighScore> {
     }
 
     public String getName() {
+        if (name.length() == 0 || score == 0) return "<empty>";
         return name;
     }
     
     public int getScore() {
+        if (name.length() == 0) return 0;
         return score;
     }
     
-    public String toString() {
-        if (name.length() == 0) return "<empty>";
-        return name + score;
-    }
-
     @Override
     public int compareTo(HighScore h) {
-        return score - h.score;
+        return getScore() - h.getScore();
     }
 }
