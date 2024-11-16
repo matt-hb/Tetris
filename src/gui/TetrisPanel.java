@@ -23,6 +23,7 @@ public class TetrisPanel extends JPanel implements ActionListener {
 		tetris = new Tetris();
 		setFocusable(true);
 		setLayout(new BorderLayout());
+		setBackground(frame.getBackground());
 		squareSize = Math.min(frame.getHeight() / tetris.getBoard().getHeight(), frame.getWidth() / tetris.getBoard().getWidth());
 
 		initInfoPanel();
@@ -33,7 +34,6 @@ public class TetrisPanel extends JPanel implements ActionListener {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		setBackground(new Color(40, 42, 54).darker());		
 		Graphics2D g2d = (Graphics2D) g.create();
 		g2d.translate(0, this.getHeight());
 		g2d.scale(1, -1);
@@ -63,7 +63,7 @@ public class TetrisPanel extends JPanel implements ActionListener {
 	private void initInfoPanel(){
 		JPanel infoPanel = new JPanel();
 		infoPanel.setLayout(new GridBagLayout());
-		infoPanel.setBackground(new Color(0,0,0,0));
+		infoPanel.setBackground(frame.getBackground());
 
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
@@ -98,6 +98,7 @@ public class TetrisPanel extends JPanel implements ActionListener {
 		JButton backButton = new JButton("Back");
 		backButton.addActionListener(e -> frame.returnToMainMenu(TetrisApp.QUIT_FROM_GAME));
 		backButton.setPreferredSize(new Dimension(4*squareSize, 3*squareSize/2));
+		backButton.setBackground(getBackground().brighter());
 		infoPanel.add(backButton, gbc);
 
 		add(infoPanel, BorderLayout.EAST);

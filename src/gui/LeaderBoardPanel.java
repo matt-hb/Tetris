@@ -30,8 +30,9 @@ public class LeaderBoardPanel extends JPanel {
     private void initPanel() {
         JPanel entries = new JPanel();
         entries.setLayout(new GridBagLayout());
+        entries.setBackground(getBackground());
         int entryHeight = frame.getWidth() * 8/10 / 10; // height of each entry
-        int amountFits = (frame.getHeight() * 6/10) / entryHeight; // amount of entries that fit in the panel
+        int amountFits = (frame.getHeight() * 8/10) / entryHeight; // amount of entries that fit in the panel
 
         GridBagConstraints boardConstraints = new GridBagConstraints();
         boardConstraints.gridwidth = GridBagConstraints.REMAINDER;
@@ -61,6 +62,7 @@ public class LeaderBoardPanel extends JPanel {
             entry.add(new JLabel("" + hs.getScore(), SwingConstants.CENTER), entryConstraints);
             entry.setPreferredSize(new Dimension(10 * entryHeight, entryHeight));
             entry.setBorder(mb);
+            entry.setBackground(getBackground().brighter());
 
             entries.add(entry, boardConstraints);
         }
@@ -69,6 +71,7 @@ public class LeaderBoardPanel extends JPanel {
         boardConstraints.fill = GridBagConstraints.NONE;
         JButton backButton = new JButton("<html><h1>Back</h1></html>");
         backButton.addActionListener(e -> frame.returnToMainMenu(TetrisApp.QUIT_FROM_LEADERBOARD));
+        backButton.setBackground(getBackground().brighter());
         entries.add(backButton, boardConstraints);
 
         add(entries, BorderLayout.CENTER);

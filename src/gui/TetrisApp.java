@@ -40,6 +40,7 @@ public class TetrisApp extends JFrame {
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setLayout(new CardLayout());
+		setBackground(new Color(40, 42, 54).darker());
 
 		initSounds();
 		
@@ -85,7 +86,7 @@ public class TetrisApp extends JFrame {
 	private void makeMenuButtons() {
 		JPanel menuButtons = new JPanel();
 		menuButtons.setLayout(new GridBagLayout());
-		menuButtons.setBackground(new Color(40, 42, 54).darker());
+		menuButtons.setBackground(this.getBackground());
 		
 		int buttonUnit = WINDOW_HEIGHT/20;
 		
@@ -113,20 +114,20 @@ public class TetrisApp extends JFrame {
 			gameSong.loop(Clip.LOOP_CONTINUOUSLY);
 		}
 		);
-		startButton.setAlignmentX(CENTER_ALIGNMENT);
 		startButton.setPreferredSize(new Dimension(5*buttonUnit, buttonUnit));
+		startButton.setBackground(getBackground().brighter());
 		menuButtons.add(startButton, gbc);
 		
 		JButton rankingButton = new JButton("<html><h1>Leaderboards</h1></html>");
 		rankingButton.addActionListener(e -> changeToPage("leaderboard"));
-		rankingButton.setAlignmentX(CENTER_ALIGNMENT);
 		rankingButton.setPreferredSize(new Dimension(5*buttonUnit, buttonUnit));
+		rankingButton.setBackground(getBackground().brighter());
 		menuButtons.add(rankingButton, gbc);
 		
 		JButton exitButton = new JButton("<html><h1>Exit</h1></html>");
 		exitButton.addActionListener(e -> close());
-		exitButton.setAlignmentX(CENTER_ALIGNMENT);
 		exitButton.setPreferredSize(new Dimension(5*buttonUnit, buttonUnit));
+		exitButton.setBackground(getBackground().brighter());
 		menuButtons.add(exitButton, gbc);
 		
 		gbc.weighty = 1;
