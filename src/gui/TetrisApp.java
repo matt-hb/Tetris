@@ -154,7 +154,7 @@ public class TetrisApp extends JFrame {
 	private void makeLeaderBoard() {
 		leaderBoard = new LeaderBoardPanel(this);
 		leaderBoard.setPreferredSize(getSize());
-		leaderBoard.importScores("scores.json");
+		leaderBoard.importScores("localScores.json");
 		leaderBoard.refresh();
 		add(leaderBoard, "leaderboard");
 	}
@@ -178,7 +178,7 @@ public class TetrisApp extends JFrame {
 		menuSong.close();
 		gameSong.close();
 		failSound.close();
-		leaderBoard.exportScores("scores.json");
+		leaderBoard.exportScores("localScores.json");
 		System.exit(0);
 	}
 }
