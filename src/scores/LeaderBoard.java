@@ -1,6 +1,10 @@
 package scores;
 
+import java.io.*;
 import java.util.*;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class LeaderBoard {
     private List<HighScore> lb;
@@ -39,10 +43,25 @@ public class LeaderBoard {
     }
 
     public void readFromJSON(String filename) {
-        //TODO
+        Gson gson = new Gson();
+        try  {
+            FileReader reader = new FileReader(filename);
+            HighScore[] t = gson.fromJson(reader, HighScore[].class);
+            lb = new ArrayList<>(Arrays.asList(t));
+            reader.close();
+        } catch (IOException e) {
+            System.err.println("Error reading scores");
+        }
     }
 
     public void writeToJSON(String filename) {
-        //TODO
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        try {
+            FileWriter writer = new FileWriter(filename);
+            writer.write(gson.toJson(lb));
+            writer.close();
+        } catch (IOException e) {
+            System.err.println("Error saving scores");
+        }
     }
 }

@@ -18,6 +18,14 @@ public class LeaderBoardPanel extends JPanel {
         initPanel();
     }
 
+    public void importScores(String filename){
+        lb.readFromJSON(filename);
+    }
+
+    public void exportScores(String filename){
+        lb.writeToJSON(filename);
+    }
+
     public void addNewScore(String name, int score){
         lb.add(new HighScore(name, score));
     }
