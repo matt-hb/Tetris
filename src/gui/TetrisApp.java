@@ -67,8 +67,7 @@ public class TetrisApp extends JFrame {
 			if (reason == TOPOUT) {
 				failSound.setMicrosecondPosition(0);
 				failSound.start();
-				try { Thread.sleep(2000); } catch(InterruptedException e) { /*just wait it out*/ }
-				//TODO Leaderboard
+				processResults();
 			}
 			remove(tetris);
 			makeTetris();
@@ -81,6 +80,16 @@ public class TetrisApp extends JFrame {
 	private void changeToPage(String name){
 		CardLayout cl = (CardLayout) getContentPane().getLayout();
 		cl.show(getContentPane(), name);
+	}
+
+	private void processResults(){
+		int score = tetris.getResults();
+		String text = "Your score is " + score + ", that puts you at #" + leaderBoard.positionIfAdded(score) + " on the leaderboard!\nIf you want to save your score, enter your name.";
+		String name = JOptionPane.showInputDialog(this, text, "Game Over!", JOptionPane.PLAIN_MESSAGE);
+		if (name == null) name = "";
+		System.out.println("Adding " + name + " with score " + score);
+		leaderBoard.addNewScore(name, score);
+		leaderBoard.refresh();
 	}
 	
 	private void makeMenuButtons() {

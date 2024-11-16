@@ -27,6 +27,10 @@ public class LeaderBoardPanel extends JPanel {
         initPanel();
     }
 
+    public int positionIfAdded(int score){
+        return lb.positionIfAdded(score);
+    }
+
     private void initPanel() {
         JPanel entries = new JPanel();
         entries.setLayout(new GridBagLayout());

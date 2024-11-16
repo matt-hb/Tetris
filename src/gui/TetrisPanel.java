@@ -60,6 +60,10 @@ public class TetrisPanel extends JPanel implements ActionListener {
 		repaint(0,0,getWidth(),getHeight());
 	}
 
+	public int getResults() {
+		return tetris.getScore();
+	}
+
 	private void initInfoPanel(){
 		JPanel infoPanel = new JPanel();
 		infoPanel.setLayout(new GridBagLayout());

@@ -19,12 +19,23 @@ public class LeaderBoard {
     }
 
     public void add(HighScore s) {
-        lb.add(s);
-        Collections.sort(lb);
+        if (s.getScore() != 0) {
+            lb.add(s);
+            Collections.sort(lb);
+            Collections.reverse(lb);
+        }
     }
 
     public int size() {
         return lb.size();
+    }
+
+    public int positionIfAdded(int score) {
+        int pos = 0;
+        while (pos < lb.size() && lb.get(pos).getScore() >= score) {
+            pos++;
+        }
+        return (pos+1);
     }
 
     public void readFromJSON(String filename) {
