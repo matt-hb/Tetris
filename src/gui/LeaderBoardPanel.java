@@ -15,7 +15,6 @@ public class LeaderBoardPanel extends JPanel {
         lb = new LeaderBoard();
         setLayout(new BorderLayout());
         setBackground(frame.getBackground());
-        initPanel();
     }
 
     public void importScores(String filename){
