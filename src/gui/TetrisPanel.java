@@ -17,6 +17,7 @@ public class TetrisPanel extends JPanel implements ActionListener {
 	private JLabel score;
 	private JLabel linesTotal;
 	private JLabel linesRemaining;
+	private JLabel level;
 	
 	public TetrisPanel(TetrisApp p) {
 		frame = p;
@@ -57,6 +58,7 @@ public class TetrisPanel extends JPanel implements ActionListener {
 		score.setText("<html><b>Score: " + tetris.getScore() + "</b></html>");
 		linesTotal.setText("<html><b>Lines cleared: " + tetris.getTotalLines() + "</b></html>");
 		linesRemaining.setText("<html><b>Lines until next level: " + tetris.getLinesToNextLevel() + "</b></html>");
+		level.setText("<html><b>Current level: " + tetris.getGameSpeed() + "</b></html>");
 		repaint(0,0,getWidth(),getHeight());
 	}
 
@@ -78,9 +80,10 @@ public class TetrisPanel extends JPanel implements ActionListener {
 		score = new JLabel("", SwingConstants.CENTER);
 		linesTotal = new JLabel("", SwingConstants.CENTER);
 		linesRemaining = new JLabel("", SwingConstants.CENTER);
+		level = new JLabel("", SwingConstants.CENTER);
 		int bw = Math.floorDiv(squareSize, 10);
 		MatteBorder mb = BorderFactory.createMatteBorder(bw, bw, 3*bw, bw, Color.WHITE);
-		for (JLabel label : List.of(score,linesTotal,linesRemaining)){
+		for (JLabel label : List.of(score, linesTotal, linesRemaining, level)){
 			label.setForeground(Color.WHITE);
 			label.setPreferredSize(new Dimension(4*squareSize, 3*squareSize/2));
 			label.setBorder(mb);

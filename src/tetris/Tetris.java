@@ -85,6 +85,10 @@ public class Tetris {
 		}
 		else return 1;
 	}
+
+	public int getGameSpeed() {
+		return gameSpeed;
+	}
 	
 	public Board getBoard() {
 		return board;
