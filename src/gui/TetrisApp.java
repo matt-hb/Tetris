@@ -84,11 +84,13 @@ public class TetrisApp extends JFrame {
 
 	private void processResults(){
 		int score = tetris.getResults();
-		String text = "Your score is " + score + ", that puts you at #" + leaderBoard.positionIfAdded(score) + " on the leaderboard!\nIf you want to save your score, enter your name.";
-		String name = JOptionPane.showInputDialog(this, text, "Game Over!", JOptionPane.PLAIN_MESSAGE);
-		if (name == null) name = "";
-		leaderBoard.addNewScore(name.trim(), score);
-		leaderBoard.refresh();
+		if (score != 0) {
+			String text = "Your score is " + score + ", that puts you at #" + leaderBoard.positionIfAdded(score) + " on the leaderboard!\nIf you want to save your score, enter your name.";
+			String name = JOptionPane.showInputDialog(this, text, "Game Over!", JOptionPane.PLAIN_MESSAGE);
+			if (name == null) name = "";
+			leaderBoard.addNewScore(name.trim(), score);
+			leaderBoard.refresh();
+		}
 	}
 	
 	private void makeMenuButtons() {
