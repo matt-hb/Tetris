@@ -25,23 +25,15 @@ public class TetrisPanel extends JPanel implements ActionListener {
 		setFocusable(true);
 		setLayout(new BorderLayout());
 		setBackground(frame.getBackground());
-		squareSize = Math.min(frame.getHeight() / tetris.getBoard().getHeight(), frame.getWidth() / tetris.getBoard().getWidth());
+		squareSize = Math.min(frame.getHeight() / tetris.getBoardHeight(), frame.getWidth() / tetris.getBoardWidth());
 
+		initBoardPanel();
 		initInfoPanel();
 		
 		addKeyListener(new TetrisListener());
 	}
 	
-	@Override
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		Graphics2D g2d = (Graphics2D) g.create();
-		g2d.translate(0, this.getHeight());
-		g2d.scale(1, -1);
-		tetris.drawTetris(g2d, squareSize);
-	}
-	
-	public void startGame() {		
+	public void startGame() {
 		timer = new Timer(50, this);
 		timer.setDelay(tetris.getDelayInMillis());
 		timer.start();
@@ -59,11 +51,18 @@ public class TetrisPanel extends JPanel implements ActionListener {
 		linesTotal.setText("<html><b>Lines cleared: " + tetris.getTotalLines() + "</b></html>");
 		linesRemaining.setText("<html><b>Lines until next level: " + tetris.getLinesToNextLevel() + "</b></html>");
 		level.setText("<html><b>Current level: " + tetris.getGameSpeed() + "</b></html>");
-		repaint(0,0,getWidth(),getHeight());
+		repaint();
 	}
 
 	public int getResults() {
 		return tetris.getScore();
+	}
+
+	private void initBoardPanel() {
+		BoardPanel boardPanel = new BoardPanel();
+		boardPanel.setPreferredSize(new Dimension(tetris.getBoardWidth() * squareSize, tetris.getBoardHeight() * squareSize));
+		boardPanel.setBackground(getBackground());
+		add(boardPanel, BorderLayout.WEST);
 	}
 
 	private void initInfoPanel(){
@@ -133,6 +132,19 @@ public class TetrisPanel extends JPanel implements ActionListener {
 			g2d.translate(0, this.getHeight());
 			g2d.scale(1, -1);
 			tetris.drawNextPiece(g2d, squareSize);
+		}
+	}
+
+	private class BoardPanel extends JPanel {
+		@Override
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			Graphics2D g2d = (Graphics2D) g.create();
+			g2d.translate(0, this.getHeight());
+			g2d.scale(1, -1);
+			tetris.drawTetris(g2d, squareSize);
+			g2d.setColor(getBackground());
+			g2d.fillRect(0, tetris.getBoardHeight()*squareSize, tetris.getBoardWidth() * squareSize, getHeight() - tetris.getBoardHeight()*squareSize);
 		}
 	}
 }

@@ -90,8 +90,12 @@ public class Tetris {
 		return gameSpeed;
 	}
 	
-	public Board getBoard() {
-		return board;
+	public int getBoardHeight() {
+		return board.getHeight();
+	}
+
+	public int getBoardWidth() {
+		return board.getWidth();
 	}
 	
 	public void drawTetris(Graphics g, int squareSize) {
