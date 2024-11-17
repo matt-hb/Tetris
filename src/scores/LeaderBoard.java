@@ -19,6 +19,7 @@ public class LeaderBoard {
     }
 
     public HighScore get(int index) {
+        if (index >= lb.size()) return new HighScore();
         return lb.get(index);
     }
 

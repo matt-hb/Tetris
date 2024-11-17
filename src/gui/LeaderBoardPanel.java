@@ -61,7 +61,7 @@ public class LeaderBoardPanel extends JPanel {
 
         boardConstraints.weighty = 0.5;
         for (int i = 0; i < amountFits ; i++) {
-            HighScore hs = i < lb.size() ? lb.get(i) : new HighScore();
+            HighScore hs = lb.get(i);
 
             JPanel entry = new JPanel();
             entry.setLayout(new GridBagLayout());
