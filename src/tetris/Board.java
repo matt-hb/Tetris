@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.*;
+import gui.TetrisApp;
 
 public class Board {
 	private int width;
@@ -15,7 +16,7 @@ public class Board {
 		
 		public Cell () {
 			filled = false;
-			color = new Color(40, 42, 54);
+			color = TetrisApp.BACKGROUND_COLOR.brighter();
 		}
 	}
 	

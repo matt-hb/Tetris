@@ -1,7 +1,6 @@
 package gui;
 
 import javax.swing.*;
-import javax.swing.plaf.ColorUIResource;
 
 import java.awt.*;
 import java.awt.event.WindowAdapter;
@@ -13,11 +12,15 @@ import com.formdev.flatlaf.FlatDarculaLaf;
 
 public class TetrisApp extends JFrame {
 	public static final Color BACKGROUND_COLOR = new Color(40, 42, 54).darker();
+	public static final Color TEXT_COLOR = new Color(248, 248, 242);
+
 	public static final int TOPOUT = 0;
 	public static final int QUIT_FROM_GAME = 1;
 	public static final int QUIT_FROM_LEADERBOARD = 2;
+
 	private static final int WINDOW_WIDTH = 600;
 	private static final int WINDOW_HEIGHT = 900;
+
 	private TetrisPanel tetris;
 	private LeaderBoardPanel leaderBoard;
 	private Clip menuSong;
@@ -31,6 +34,10 @@ public class TetrisApp extends JFrame {
 			UIManager.setLookAndFeel(new FlatDarculaLaf());
 			UIManager.put("OptionPane.background", BACKGROUND_COLOR);
 			UIManager.put("TextField.background", BACKGROUND_COLOR.brighter());
+			UIManager.put("Button.background", BACKGROUND_COLOR.brighter());
+			UIManager.put("TextField.foreground", TEXT_COLOR);
+			UIManager.put("Button.foreground", TEXT_COLOR);
+			UIManager.put("Label.foreground", TEXT_COLOR);
 		} catch (Exception e) { 
 			System.err.println("Failed to initialize FlatLaF, using system default"); 
 			try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); } catch (Exception ignored) { /*ignored*/ }

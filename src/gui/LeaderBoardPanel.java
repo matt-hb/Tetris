@@ -51,7 +51,7 @@ public class LeaderBoardPanel extends JPanel {
 		boardConstraints.fill = GridBagConstraints.HORIZONTAL;
 
         int bw = Math.ceilDiv(entryHeight, 20);
-        MatteBorder mb = BorderFactory.createMatteBorder(bw, bw, 3*bw, bw, Color.WHITE);
+        MatteBorder mb = BorderFactory.createMatteBorder(bw, bw, 3*bw, bw, TetrisApp.TEXT_COLOR);
         
         GridBagConstraints entryConstraints = new GridBagConstraints();
         entryConstraints.gridwidth = 3;
