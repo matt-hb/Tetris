@@ -1,6 +1,8 @@
 package gui;
 
 import javax.swing.*;
+import javax.swing.plaf.ColorUIResource;
+
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -10,6 +12,7 @@ import javax.sound.sampled.*;
 import com.formdev.flatlaf.FlatDarculaLaf;
 
 public class TetrisApp extends JFrame {
+	public static final Color BACKGROUND_COLOR = new Color(40, 42, 54).darker();
 	public static final int TOPOUT = 0;
 	public static final int QUIT_FROM_GAME = 1;
 	public static final int QUIT_FROM_LEADERBOARD = 2;
@@ -26,6 +29,8 @@ public class TetrisApp extends JFrame {
 
 		try {
 			UIManager.setLookAndFeel(new FlatDarculaLaf());
+			UIManager.put("OptionPane.background", BACKGROUND_COLOR);
+			UIManager.put("TextField.background", BACKGROUND_COLOR.brighter());
 		} catch (Exception e) { 
 			System.err.println("Failed to initialize FlatLaF, using system default"); 
 			try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); } catch (Exception ignored) { /*ignored*/ }
@@ -40,7 +45,7 @@ public class TetrisApp extends JFrame {
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setLayout(new CardLayout());
-		setBackground(new Color(40, 42, 54).darker());
+		setBackground(BACKGROUND_COLOR);
 
 		initSounds();
 		
