@@ -5,23 +5,57 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.util.*;
 
+/**
+ * The Tetromino class represents a Tetris piece with a specific shape, color, and set of minos (blocks).
+ * It provides methods to rotate the piece, draw it on a graphics context, and access its properties.
+ */
 public class Tetromino {
+	/**
+	 * The Shape enum represents the different types of tetromino shapes
+	 * used in the Tetris game. Each shape is represented by a single
+	 * letter corresponding to its common name: I, J, L, S, Z, T, O.
+	 */
 	protected enum Shape {
 		I, J, L, S, Z, T, O
 	}
+	/**
+	 * A static map that stores the color of each shape.
+	 */
 	private static EnumMap<Shape, Color> shapeColors = new EnumMap<>(Shape.class);
+	/**
+	 * A static map that stores the minos of each shape.
+	 */
 	private static EnumMap<Shape, List<Point>> shapeMinos = new EnumMap<>(Shape.class);
 
+	/**
+	 * A list of points representing the individual blocks (minos) that make up the Tetromino.
+	 */
 	private List<Point> minos;
+
+	/**
+	 * The color of the Tetromino.
+	 */
 	private Color color;
+
+	/**
+	 * The shape of the Tetromino.
+	 */
 	private Shape shape;
-		
+	
+	/**
+	 * Constructs a new Tetromino object with the specified shape.
+	 * @param shape the shape of the Tetromino
+	 */
 	protected Tetromino(Shape shape) {
 		minos = shapeMinos.get(shape);
 		color = shapeColors.get(shape);
 		this.shape = shape;
 	}
-		
+	
+	/**
+	 * Returns the minos of the Tetromino.
+	 * @return a list of points representing the minos
+	 */
 	protected List<Point> getMinos(){
 		return minos;
 	}
