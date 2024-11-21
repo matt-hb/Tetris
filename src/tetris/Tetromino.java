@@ -28,7 +28,7 @@ public class Tetromino {
 	private static EnumMap<Shape, Set<Point>> shapeMinos = new EnumMap<>(Shape.class);
 
 	/**
-	 * A set of points representing the individual blocks (minos) that make up the Tetromino.
+	 * A set of points (relative coordinates) to represent the minos that make up the Tetromino.
 	 */
 	private Set<Point> minos;
 
@@ -43,7 +43,7 @@ public class Tetromino {
 	private Shape shape;
 	
 	/**
-	 * Constructs a new Tetromino object with the specified shape.
+	 * Constructs a new Tetromino object with the specified shape, setting the minos and color accordingly.
 	 * @param shape the shape of the Tetromino
 	 */
 	protected Tetromino(Shape shape) {
@@ -60,18 +60,35 @@ public class Tetromino {
 		return minos;
 	}
 	
+	/**
+	 * Sets the minos of the Tetromino to the given set of points.
+	 * @param newMinos the new set of minos
+	 */
 	protected void setMinos(Set<Point> newMinos) {
 		minos = newMinos;
 	}
 	
+	/**
+	 * Returns the color of the Tetromino.
+	 * @return the color of the Tetromino
+	 */
 	protected Color getColor() {
 		return color;
 	}
 
+	/**
+	 * Checks if the Tetromino has the given shape.
+	 * @param s the shape to check against
+	 * @return true if the Tetromino has the given shape, false otherwise
+	 */
 	protected boolean isShape(Shape s) {
 		return shape == s;
 	}
 	
+	/**
+	 * Rotates the Tetromino 90 degrees to the left (counter-clockwise).
+	 * @return a new Tetromino object representing the rotated piece
+	 */
 	protected Tetromino rotatedLeft() {
 		if (shape == Shape.O) return this;
 		Tetromino out = new Tetromino(shape);
@@ -83,6 +100,10 @@ public class Tetromino {
 		return out;
 	}
 	
+	/**
+	 * Rotates the Tetromino 90 degrees to the right (clockwise).
+	 * @return a new Tetromino object representing the rotated piece
+	 */
 	protected Tetromino rotatedRight() {
 		if (shape == Shape.O) return this;
 		Tetromino out = new Tetromino(shape);
@@ -94,12 +115,29 @@ public class Tetromino {
 		return out;
 	}
 	
+	/**
+	 * Draws the Tetromino on the given graphics context at the specified location and size.
+	 * Assumes the minos are relative to the top-left corner of the piece, increasing height downwards.
+	 * @param g the graphics context to draw on
+	 * @param x the x-coordinate of the top-left corner of the piece
+	 * @param y the y-coordinate of the top-left corner of the piece
+	 * @param squareSize the size of each square in pixels
+	 */
 	protected void drawPiece(Graphics g, int x, int y, int squareSize) {
 		for (Point mino : minos) {
 			drawMino(g, x + mino.x*squareSize, y + mino.y*squareSize, this.color, squareSize);
 		}
 	}
 	
+	/**
+	 * Draws a single mino on the graphics context at the specified location and size.
+	 * Draws a darker border around the mino.
+	 * @param g the graphics context to draw on
+	 * @param x the x-coordinate of the top-left corner of the mino
+	 * @param y the y-coordinate of the top-left corner of the mino
+	 * @param c the color of the mino
+	 * @param size the size of the mino in pixels
+	 */
 	protected static void drawMino(Graphics g, int x, int y, Color c, int size) {
 		int borderWidth = Math.floorDiv(size, 10);
 		if (borderWidth == 0) borderWidth = 1;
@@ -108,9 +146,12 @@ public class Tetromino {
 		g.fillRect(x, y, size, size);
 		
 		g.setColor(c);
-		g.fillRect(x + borderWidth, y + borderWidth, size - 2*borderWidth, size - 2*borderWidth);		
+		g.fillRect(x + borderWidth, y + borderWidth, size - 2*borderWidth, size - 2*borderWidth);
 	}
 	
+	/**
+	 * Initializes the static maps with the colors and minos for each shape.
+	 */
 	static {
 		shapeColors.put(Shape.I, new Color(139, 233, 253));
 		shapeColors.put(Shape.J, new Color(98, 114, 164));
