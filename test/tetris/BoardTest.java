@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import java.awt.Point;
-import java.util.List;
+import java.util.Set;
 
 /**
  * This class contains tests for the Board class.
@@ -28,7 +28,7 @@ public class BoardTest {
     public void setUp() {
         board = new Board();
         singleMino = new Tetromino(Tetromino.Shape.O);
-        singleMino.setMinos(List.of(new Point(0, 0)));
+        singleMino.setMinos(Set.of(new Point(0, 0)));
     }
 
     /**

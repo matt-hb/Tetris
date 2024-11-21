@@ -25,12 +25,12 @@ public class Tetromino {
 	/**
 	 * A static map that stores the minos of each shape.
 	 */
-	private static EnumMap<Shape, List<Point>> shapeMinos = new EnumMap<>(Shape.class);
+	private static EnumMap<Shape, Set<Point>> shapeMinos = new EnumMap<>(Shape.class);
 
 	/**
-	 * A list of points representing the individual blocks (minos) that make up the Tetromino.
+	 * A set of points representing the individual blocks (minos) that make up the Tetromino.
 	 */
-	private List<Point> minos;
+	private Set<Point> minos;
 
 	/**
 	 * The color of the Tetromino.
@@ -54,13 +54,13 @@ public class Tetromino {
 	
 	/**
 	 * Returns the minos of the Tetromino.
-	 * @return a list of points representing the minos
+	 * @return a Set of points representing the minos
 	 */
-	protected List<Point> getMinos(){
+	protected Set<Point> getMinos(){
 		return minos;
 	}
 	
-	protected void setMinos(List<Point> newMinos) {
+	protected void setMinos(Set<Point> newMinos) {
 		minos = newMinos;
 	}
 	
@@ -75,9 +75,9 @@ public class Tetromino {
 	protected Tetromino rotatedLeft() {
 		if (shape == Shape.O) return this;
 		Tetromino out = new Tetromino(shape);
-		List<Point> newMinos = new ArrayList<>();
-		for (int i = 0; i < minos.size(); i++) {
-			newMinos.add(new Point(-1*minos.get(i).y, minos.get(i).x));
+		Set<Point> newMinos = new HashSet<>();
+		for (Point mino : minos) {
+			newMinos.add(new Point(-1*mino.y, mino.x));
 		}
 		out.setMinos(newMinos);
 		return out;
@@ -86,9 +86,9 @@ public class Tetromino {
 	protected Tetromino rotatedRight() {
 		if (shape == Shape.O) return this;
 		Tetromino out = new Tetromino(shape);
-		List<Point> newMinos = new ArrayList<>();
-		for (int i = 0; i < minos.size(); i++) {
-			newMinos.add(new Point(minos.get(i).y, -1*minos.get(i).x));
+		Set<Point> newMinos = new HashSet<>();
+		for (Point mino : minos) {
+			newMinos.add(new Point(mino.y, -1*mino.x));
 		}
 		out.setMinos(newMinos);
 		return out;
@@ -120,12 +120,12 @@ public class Tetromino {
 		shapeColors.put(Shape.T, new Color(255, 121, 198));
 		shapeColors.put(Shape.O, new Color(241, 250, 140));
 				
-		shapeMinos.put(Shape.I, new ArrayList<>(List.of(new Point(-1,0), new Point(0,0), new Point(1,0), new Point(2,0))));		
-		shapeMinos.put(Shape.J, new ArrayList<>(List.of(new Point(-1,1), new Point(-1,0), new Point(0,0), new Point(1,0))));
-		shapeMinos.put(Shape.L, new ArrayList<>(List.of(new Point(-1,0), new Point(0,0), new Point(1,0), new Point(1,1))));
-		shapeMinos.put(Shape.S, new ArrayList<>(List.of(new Point(-1,0), new Point(0,0), new Point(0,1), new Point(1,1))));
-		shapeMinos.put(Shape.Z, new ArrayList<>(List.of(new Point(-1,1), new Point(0,1), new Point(0,0), new Point(1,0))));
-		shapeMinos.put(Shape.T, new ArrayList<>(List.of(new Point(-1,0), new Point(0,0), new Point(1,0), new Point(0,1))));
-		shapeMinos.put(Shape.O, new ArrayList<>(List.of(new Point(0,0), new Point(1,0), new Point(0,1), new Point(1,1))));
+		shapeMinos.put(Shape.I, new HashSet<>(Set.of(new Point(-1,0), new Point(0,0), new Point(1,0), new Point(2,0))));
+		shapeMinos.put(Shape.J, new HashSet<>(Set.of(new Point(-1,1), new Point(-1,0), new Point(0,0), new Point(1,0))));
+		shapeMinos.put(Shape.L, new HashSet<>(Set.of(new Point(-1,0), new Point(0,0), new Point(1,0), new Point(1,1))));
+		shapeMinos.put(Shape.S, new HashSet<>(Set.of(new Point(-1,0), new Point(0,0), new Point(0,1), new Point(1,1))));
+		shapeMinos.put(Shape.Z, new HashSet<>(Set.of(new Point(-1,1), new Point(0,1), new Point(0,0), new Point(1,0))));
+		shapeMinos.put(Shape.T, new HashSet<>(Set.of(new Point(-1,0), new Point(0,0), new Point(1,0), new Point(0,1))));
+		shapeMinos.put(Shape.O, new HashSet<>(Set.of(new Point(0,0), new Point(1,0), new Point(0,1), new Point(1,1))));
 	}
 }

@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import java.awt.Color;
 import java.awt.Point;
-import java.util.List;
+import java.util.Set;
 
 /**
  * This class contains tests for the creation and rotation of Tetromino shapes.
@@ -20,7 +20,7 @@ public class TetrominoTest {
         Tetromino t = new Tetromino(Tetromino.Shape.L);
         assertTrue(t.isShape(Tetromino.Shape.L));
         assertEquals(new Color(255, 184, 108), t.getColor());
-        assertEquals(List.of(new Point(-1,0), new Point(0,0), new Point(1,0), new Point(1,1)), t.getMinos());
+        assertEquals(Set.of(new Point(-1,0), new Point(0,0), new Point(1,0), new Point(1,1)), t.getMinos());
     }
 
     /**
@@ -35,7 +35,7 @@ public class TetrominoTest {
         Tetromino t = new Tetromino(Tetromino.Shape.I);
         Tetromino rotated = t.rotatedLeft();
         assertEquals(t.getColor(), rotated.getColor());
-        assertEquals(List.of(new Point(0,-1), new Point(0,0), new Point(0,1), new Point(0,2)), rotated.getMinos());
+        assertEquals(Set.of(new Point(0,-1), new Point(0,0), new Point(0,1), new Point(0,2)), rotated.getMinos());
     }
 
     /**
@@ -50,7 +50,7 @@ public class TetrominoTest {
         Tetromino t = new Tetromino(Tetromino.Shape.I);
         Tetromino rotated = t.rotatedRight();
         assertEquals(t.getColor(), rotated.getColor());
-        assertEquals(List.of(new Point(0,1), new Point(0,0), new Point(0,-1), new Point(0,-2)), rotated.getMinos());
+        assertEquals(Set.of(new Point(0,1), new Point(0,0), new Point(0,-1), new Point(0,-2)), rotated.getMinos());
     }
 
     /**
@@ -65,7 +65,7 @@ public class TetrominoTest {
         Tetromino t = new Tetromino(Tetromino.Shape.J);
         Tetromino rotated = t.rotatedLeft();
         assertEquals(t.getColor(), rotated.getColor());
-        assertEquals(List.of(new Point(-1,-1), new Point(0,-1), new Point(0,0), new Point(0,1)), rotated.getMinos());
+        assertEquals(Set.of(new Point(-1,-1), new Point(0,-1), new Point(0,0), new Point(0,1)), rotated.getMinos());
     }
 
     /**
@@ -80,7 +80,7 @@ public class TetrominoTest {
         Tetromino t = new Tetromino(Tetromino.Shape.J);
         Tetromino rotated = t.rotatedRight();
         assertEquals(t.getColor(), rotated.getColor());
-        assertEquals(List.of(new Point(1,1), new Point(0,1), new Point(0,0), new Point(0,-1)), rotated.getMinos());
+        assertEquals(Set.of(new Point(1,1), new Point(0,1), new Point(0,0), new Point(0,-1)), rotated.getMinos());
     }
 
     /**
@@ -95,7 +95,7 @@ public class TetrominoTest {
         Tetromino t = new Tetromino(Tetromino.Shape.Z);
         Tetromino rotated = t.rotatedLeft();
         assertEquals(t.getColor(), rotated.getColor());
-        assertEquals(List.of(new Point(-1,-1), new Point(-1,0), new Point(0,0), new Point(0,1)), rotated.getMinos());
+        assertEquals(Set.of(new Point(-1,-1), new Point(-1,0), new Point(0,0), new Point(0,1)), rotated.getMinos());
     }
 
     /**
@@ -110,7 +110,7 @@ public class TetrominoTest {
         Tetromino t = new Tetromino(Tetromino.Shape.Z);
         Tetromino rotated = t.rotatedRight();
         assertEquals(t.getColor(), rotated.getColor());
-        assertEquals(List.of(new Point(1,1), new Point(1,0), new Point(0,-0), new Point(0,-1)), rotated.getMinos());
+        assertEquals(Set.of(new Point(1,1), new Point(1,0), new Point(0,-0), new Point(0,-1)), rotated.getMinos());
     }
 
     /**
