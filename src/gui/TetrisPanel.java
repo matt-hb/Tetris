@@ -142,6 +142,7 @@ public class TetrisPanel extends JPanel implements ActionListener {
 			g2d.translate(0, this.getHeight());
 			g2d.scale(1, -1);
 			tetris.drawTetris(g2d, squareSize);
+			
 			g2d.setColor(getBackground());
 			g2d.fillRect(0, tetris.getBoardHeight()*squareSize, tetris.getBoardWidth() * squareSize, getHeight() - tetris.getBoardHeight()*squareSize);
 		}

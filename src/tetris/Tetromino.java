@@ -16,29 +16,29 @@ public class Tetromino {
 	private Color color;
 	private Shape shape;
 		
-	public Tetromino(Shape shape) {
+	protected Tetromino(Shape shape) {
 		minos = shapeMinos.get(shape);
 		color = shapeColors.get(shape);
 		this.shape = shape;
 	}
 		
-	public List<Point> getMinos(){
+	protected List<Point> getMinos(){
 		return minos;
 	}
 	
-	public void setMinos(List<Point> newMinos) {
+	protected void setMinos(List<Point> newMinos) {
 		minos = newMinos;
 	}
 	
-	public Color getColor() {
+	protected Color getColor() {
 		return color;
 	}
 
-	public boolean isShape(Shape s) {
+	protected boolean isShape(Shape s) {
 		return shape == s;
 	}
 	
-	public Tetromino rotatedLeft() {
+	protected Tetromino rotatedLeft() {
 		if (shape == Shape.O) return this;
 		Tetromino out = new Tetromino(shape);
 		List<Point> newMinos = new ArrayList<>();
@@ -49,7 +49,7 @@ public class Tetromino {
 		return out;
 	}
 	
-	public Tetromino rotatedRight() {
+	protected Tetromino rotatedRight() {
 		if (shape == Shape.O) return this;
 		Tetromino out = new Tetromino(shape);
 		List<Point> newMinos = new ArrayList<>();
@@ -60,13 +60,13 @@ public class Tetromino {
 		return out;
 	}
 	
-	public void drawPiece(Graphics g, int x, int y, int squareSize) {
+	protected void drawPiece(Graphics g, int x, int y, int squareSize) {
 		for (Point mino : minos) {
 			drawMino(g, x + mino.x*squareSize, y + mino.y*squareSize, this.color, squareSize);
 		}
 	}
 	
-	public static  void drawMino(Graphics g, int x, int y, Color c, int size) {
+	protected static void drawMino(Graphics g, int x, int y, Color c, int size) {
 		int borderWidth = Math.floorDiv(size, 10);
 		if (borderWidth == 0) borderWidth = 1;
 		

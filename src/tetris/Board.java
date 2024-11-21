@@ -22,27 +22,27 @@ public class Board {
 	
 	private List<List<Cell>> lines;
 	
-	public Board () {
+	protected Board () {
 		width = 10;
 		height = 24+4;
 		initEmptyBoard();
 	}
 	
-	public Board (int w, int h) {
+	protected Board (int w, int h) {
 		width = w;
 		height = h+4;
 		initEmptyBoard();
 	}
 	
-	public int getWidth() {
+	protected int getWidth() {
 		return width;
 	}
 	
-	public int getHeight() {
+	protected int getHeight() {
 		return height-4;
 	}
 	
-	public boolean collides(Tetromino piece, int x, int y) {
+	protected boolean collides(Tetromino piece, int x, int y) {
 		for (Point mino : piece.getMinos()) {
 			if (y + mino.y < 0 || x + mino.x < 0 || x + mino.x >= width) return true;
 			if (lines.get(y+mino.y).get(x+mino.x).filled) return true;
@@ -50,14 +50,14 @@ public class Board {
 		return false;
 	}
 	
-	public void placePiece(Tetromino piece, int x, int y) {
+	protected void placePiece(Tetromino piece, int x, int y) {
 		for (Point mino : piece.getMinos()) {
 			lines.get(y+mino.y).get(x+mino.x).filled = true;
 			lines.get(y+mino.y).get(x+mino.x).color = piece.getColor();
 		}
 	}
 	
-	public int clearFilledLines() {
+	protected int clearFilledLines() {
 		int cleared = 0;
 		for (int y = getHeight(); y >= 0; y--) {
 			if (lines.get(y).stream().allMatch(cell -> cell.filled)) {
@@ -68,7 +68,7 @@ public class Board {
 		return cleared;
 	}
 	
-	public boolean isDead() {
+	protected boolean isDead() {
 		for (int y = getHeight(); y < height; y++) {
 			if (lines.get(y).stream().anyMatch(cell -> cell.filled)) return true;
 		}
