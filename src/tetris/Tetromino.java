@@ -16,10 +16,12 @@ public class Tetromino {
 	protected enum Shape {
 		I, J, L, S, Z, T, O
 	}
+
 	/**
 	 * A static map that stores the color of each shape.
 	 */
 	private static EnumMap<Shape, Color> shapeColors = new EnumMap<>(Shape.class);
+	
 	/**
 	 * A static map that stores the minos of each shape.
 	 */
