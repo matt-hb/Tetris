@@ -8,10 +8,13 @@ import java.util.List;
 
 /**
  * This class contains tests for the creation and rotation of Tetromino shapes.
- * Each test verifies the color and the positions of the minos after the rotation.
+ * Each test verifies the color and the positions of the minos after the manipulation.
  */
 public class TetrominoTest {
 
+    /*
+     * Test the creation of a piece, with the correct shape and color
+     */
     @Test
     public void testTetrominoCreation() {
         Tetromino t = new Tetromino(Tetromino.Shape.L);
