@@ -21,7 +21,7 @@ public class BoardTest {
      */
     private Tetromino singleMino;
 
-    /*
+    /**
      * Set up the objects before each test.
      */
     @BeforeEach
@@ -31,7 +31,7 @@ public class BoardTest {
         singleMino.setMinos(List.of(new Point(0, 0)));
     }
 
-    /*
+    /**
      * Test collision on every cell when the board is empty, should never collide.
      */
     @Test
@@ -43,7 +43,7 @@ public class BoardTest {
         }
     }
 
-    /*
+    /**
      * Test collision on the edges of the board, should always collide.
      * Top edge of the board is a special case, as it is extended to allow for pieces to spawn and board death to occur.
      */
@@ -58,7 +58,7 @@ public class BoardTest {
         }
     }
 
-    /*
+    /**
      * I shaped piece's minos have relative coordinates of (-1,0), (0,0), (1,0), (2,0)
      * Place an I shaped piece on the board, then test collision on every cell of it, expecting true.
      * Also test collision on every cell around it, expecting false.
@@ -75,7 +75,7 @@ public class BoardTest {
         assertFalse(board.collides(singleMino, 5, 1));
     }
 
-    /*
+    /**
      * Test if the board is empty by default, then fill every cell of the board with single cells.
      * clearFilledLines() should clear as many lines as the height of the board.
      * Test if the board height changed, and if the board is empty again.
@@ -95,7 +95,7 @@ public class BoardTest {
         assertEquals(0, board.clearFilledLines());
     }
 
-    /*
+    /**
      * Test if the board is dead by default, expecting false.
      * Place a piece on the top row of the board, then test if the board is dead, expecting true.
      */

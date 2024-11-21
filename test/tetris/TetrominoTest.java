@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class TetrominoTest {
 
-    /*
+    /**
      * Test the creation of a piece, with the correct shape and color
      */
     @Test
@@ -23,13 +23,12 @@ public class TetrominoTest {
         assertEquals(List.of(new Point(-1,0), new Point(0,0), new Point(1,0), new Point(1,1)), t.getMinos());
     }
 
-    /*
+    /**
      * Mino locations:
-     * original - rotated
-     * (-1,0) - (0,-1)
-     * (0,0) - (0,0)
-     * (1,0) - (0,1)
-     * (2,0) - (0,2)
+     * [(-1,0) -> (0,-1)]
+     * [(0,0) -> (0,0)]
+     * [(1,0) -> (0,1)]
+     * [(2,0) -> (0,2)]
      */
     @Test
     public void testTetrominoRotationLeftIShape() {
@@ -39,13 +38,12 @@ public class TetrominoTest {
         assertEquals(List.of(new Point(0,-1), new Point(0,0), new Point(0,1), new Point(0,2)), rotated.getMinos());
     }
 
-    /*
+    /**
      * Mino locations:
-     * original - rotated
-     * (-1,0) - (0,1)
-     * (0,0) - (0,0)
-     * (1,0) - (0,-1)
-     * (2,0) - (0,-2)
+     * [(-1,0) -> (0,1)]
+     * [(0,0) -> (0,0)]
+     * [(1,0) -> (0,-1)]
+     * [(2,0) -> (0,-2)]
      */
     @Test
     public void testTetrominoRotationRightIShape() {
@@ -55,13 +53,12 @@ public class TetrominoTest {
         assertEquals(List.of(new Point(0,1), new Point(0,0), new Point(0,-1), new Point(0,-2)), rotated.getMinos());
     }
 
-    /*
+    /**
      * Mino locations:
-     * original - rotated
-     * (-1,1) - (-1,-1)
-     * (-1,0) - (0,-1)
-     * (0,0) - (0,0)
-     * (1,0) - (0,1)
+     * [(-1,1) -> (-1,-1)]
+     * [(-1,0) -> (0,-1)]
+     * [(0,0) -> (0,0)]
+     * [(1,0) -> (0,1)]
      */
     @Test
     public void testTetrominoRotationLeftJShape() {
@@ -71,13 +68,12 @@ public class TetrominoTest {
         assertEquals(List.of(new Point(-1,-1), new Point(0,-1), new Point(0,0), new Point(0,1)), rotated.getMinos());
     }
 
-    /*
+    /**
      * Mino locations:
-     * original - rotated
-     * (-1,1) - (1,1)
-     * (-1,0) - (0,1)
-     * (0,0) - (0,0)
-     * (1,0) - (0,-1)
+     * [(-1,1) -> (1,1)]
+     * [(-1,0) -> (0,1)]
+     * [(0,0) -> (0,0)]
+     * [(1,0) -> (0,-1)]
      */
     @Test
     public void testTetrominoRotationRightJShape() {
@@ -87,13 +83,12 @@ public class TetrominoTest {
         assertEquals(List.of(new Point(1,1), new Point(0,1), new Point(0,0), new Point(0,-1)), rotated.getMinos());
     }
 
-    /*
+    /**
      * Mino locations:
-     * original - rotated
-     * (-1,1) - (-1,-1)
-     * (0,1) - (-1,0)
-     * (0,0) - (0,0)
-     * (1,0) - (0,1)
+     * [(-1,1) -> (-1,-1)]
+     * [(0,1) -> (-1,0)]
+     * [(0,0) -> (0,0)]
+     * [(1,0) -> (0,1)]
      */
     @Test
     public void testTetrominoRotationLeftZShape() {
@@ -103,13 +98,12 @@ public class TetrominoTest {
         assertEquals(List.of(new Point(-1,-1), new Point(-1,0), new Point(0,0), new Point(0,1)), rotated.getMinos());
     }
 
-    /*
+    /**
      * Mino locations:
-     * original - rotated
-     * (-1,1) - (1,1)
-     * (0,1) - (1,0)
-     * (0,0) - (0,0)
-     * (1,0) - (0,-1)
+     * [(-1,1) -> (1,1)]
+     * [(0,1) -> (1,0)]
+     * [(0,0) -> (0,0)]
+     * [(1,0) -> (0,-1)]
      */
     @Test
     public void testTetrominoRotationRightZShape() {
@@ -119,7 +113,7 @@ public class TetrominoTest {
         assertEquals(List.of(new Point(1,1), new Point(1,0), new Point(0,-0), new Point(0,-1)), rotated.getMinos());
     }
 
-    /*
+    /**
      * If the shape of a Tetromino is O, 
      * rotatedLeft() and rotatedRight() should return the same Tetromino
      */
@@ -131,7 +125,7 @@ public class TetrominoTest {
         assertEquals(t.getMinos(), rotated.getMinos());
     }
 
-    /*
+    /**
      * If the shape of a Tetromino is O, 
      * rotatedLeft() and rotatedRight() should return the same Tetromino
      */
