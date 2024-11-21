@@ -59,7 +59,7 @@ public class Board {
 	
 	public int clearFilledLines() {
 		int cleared = 0;
-		for (int y = height-4; y >= 0; y--) {
+		for (int y = getHeight(); y >= 0; y--) {
 			if (lines.get(y).stream().allMatch(cell -> cell.filled)) {
 				removeLine(y);
 				cleared++;
@@ -69,7 +69,7 @@ public class Board {
 	}
 	
 	public boolean isDead() {
-		for (int y = height-4; y < height; y++) {
+		for (int y = getHeight(); y < height; y++) {
 			if (lines.get(y).stream().anyMatch(cell -> cell.filled)) return true;
 		}
 		return false;
@@ -96,7 +96,7 @@ public class Board {
 	}
 	
 	public void drawBoard(Graphics g, int squareSize) {
-		for (int y = 0; y < height-4; y++) {
+		for (int y = 0; y < getHeight(); y++) {
 			for (int x = 0; x < width; x++) {
 				Tetromino.drawMino(g, x*squareSize, y*squareSize, lines.get(y).get(x).color, squareSize);
 			}
