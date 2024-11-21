@@ -6,6 +6,8 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+
+import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
@@ -53,6 +55,7 @@ public class TetrisApp extends JFrame {
 		setLocationRelativeTo(null);
 		setLayout(new CardLayout());
 		setBackground(BACKGROUND_COLOR);
+		try {setIconImage(ImageIO.read(new File("asset/icon.png")));} catch (Exception e) {System.err.println("Error loading app icon");}
 
 		initSounds();
 		
