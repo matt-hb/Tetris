@@ -127,7 +127,7 @@ public class Board {
 	/**
 	 * Checks if any lines above the playable height of the board have any filled cells in them,
 	 * which means the stack is too high and the game is over.
-	 * @return true if the top of the board is filled, false otherwise
+	 * @return true if the game is over, false otherwise
 	 */
 	protected boolean isDead() {
 		for (int y = getHeight(); y < height; y++) {
