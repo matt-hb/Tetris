@@ -59,7 +59,8 @@ public class BoardTest {
     }
 
     /*
-     * Place a piece on the board, then test collision on every cell of it, expecting true.
+     * I shaped piece's minos have relative coordinates of (-1,0), (0,0), (1,0), (2,0)
+     * Place an I shaped piece on the board, then test collision on every cell of it, expecting true.
      * Also test collision on every cell around it, expecting false.
      */
     @Test
