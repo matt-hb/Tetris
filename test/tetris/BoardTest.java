@@ -105,6 +105,4 @@ public class BoardTest {
         board.placePiece(new Tetromino(Tetromino.Shape.O), 1, board.getHeight());
         assertTrue(board.isDead());
     }
-
-
 }
