@@ -6,14 +6,12 @@ import java.awt.Point;
 import java.util.*;
 
 /**
- * The Tetromino class represents a Tetris piece with a specific shape, color, and set of minos (blocks).
- * It provides methods to rotate the piece, draw it on a graphics context, and access its properties.
+ * The Tetromino class represents a Tetris piece with a specific shape, color, and a set of (four) minos.
  */
 public class Tetromino {
 	/**
-	 * The Shape enum represents the different types of tetromino shapes
-	 * used in the Tetris game. Each shape is represented by a single
-	 * letter corresponding to its common name: I, J, L, S, Z, T, O.
+	 * The Shape enum represents the different types of tetromino shapes used in Tetris.
+	 * Each shape is represented by its 1-letter name: I, J, L, S, Z, T, O.
 	 */
 	protected enum Shape {
 		I, J, L, S, Z, T, O
