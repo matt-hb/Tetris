@@ -6,7 +6,7 @@ import java.awt.Point;
 import java.util.*;
 
 public class Tetromino {
-	public enum Shape {
+	protected enum Shape {
 		I, J, L, S, Z, T, O
 	}
 	private static EnumMap<Shape, Color> shapeColors = new EnumMap<>(Shape.class);
