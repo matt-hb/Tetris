@@ -28,12 +28,6 @@ public class Board {
 		initEmptyBoard();
 	}
 	
-	protected Board (int w, int h) {
-		width = w;
-		height = h+4;
-		initEmptyBoard();
-	}
-	
 	protected int getWidth() {
 		return width;
 	}
