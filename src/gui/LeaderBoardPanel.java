@@ -49,15 +49,15 @@ public class LeaderBoardPanel extends JPanel {
         boardConstraints.gridwidth = GridBagConstraints.REMAINDER;
 		boardConstraints.anchor = GridBagConstraints.CENTER;
 		boardConstraints.fill = GridBagConstraints.HORIZONTAL;
-
-        int bw = Math.ceilDiv(entryHeight, 20);
-        MatteBorder mb = BorderFactory.createMatteBorder(bw, bw, 3*bw, bw, TetrisApp.TEXT_COLOR);
         
         GridBagConstraints entryConstraints = new GridBagConstraints();
         entryConstraints.gridwidth = 3;
         entryConstraints.gridheight = 1;
         entryConstraints.anchor = GridBagConstraints.CENTER;
         entryConstraints.fill = GridBagConstraints.BOTH;
+
+        int bw = Math.ceilDiv(entryHeight, 20);
+        MatteBorder mb = BorderFactory.createMatteBorder(bw, bw, 3*bw, bw, TetrisApp.TEXT_COLOR);
 
         boardConstraints.weighty = 0.5;
         for (int i = 0; i < amountFits ; i++) {
@@ -70,7 +70,7 @@ public class LeaderBoardPanel extends JPanel {
             entryConstraints.weightx = 6;
             entry.add(new JLabel(hs.getName(), SwingConstants.CENTER), entryConstraints);
             entryConstraints.weightx = 3;
-            entry.add(new JLabel("" + hs.getScore(), SwingConstants.CENTER), entryConstraints);
+            entry.add(new JLabel("" + hs.getScore() + "     ", SwingConstants.TRAILING), entryConstraints);
             entry.setPreferredSize(new Dimension(10 * entryHeight, entryHeight));
             entry.setBorder(mb);
             entry.setBackground(getBackground().brighter());
