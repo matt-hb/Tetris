@@ -79,8 +79,9 @@ public class LeaderBoard {
         try  {
             FileReader reader = new FileReader(filename);
             HighScore[] t = gson.fromJson(reader, HighScore[].class);
-            lb = new ArrayList<>(Arrays.asList(t));
             reader.close();
+            if (t == null) return;
+            lb = new ArrayList<>(Arrays.asList(t));
         } catch (IOException e) {
             System.err.println("Error reading scores");
         }
