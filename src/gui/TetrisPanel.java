@@ -9,10 +9,22 @@ import javax.swing.border.*;
 
 import java.util.List;
 
+/**
+ * The TetrisPanel class is responsible for interfacing between the game and the user.
+ * It runs the game itself through a Tetris object and collects inputs from the player.
+ */
 public class TetrisPanel extends JPanel implements ActionListener {
+	/**
+	 * The TetrisApp parent object that this panel is a part of.
+	 */
 	private TetrisApp frame;
+
+	/**
+	 * The Tetris instance that represents the game logic.
+	 */
 	private Tetris tetris;
 	private int squareSize;
+
 	private Timer timer;
 	private JLabel score;
 	private JLabel linesTotal;
@@ -25,10 +37,6 @@ public class TetrisPanel extends JPanel implements ActionListener {
 		setFocusable(true);
 		setLayout(new BorderLayout());
 		setBackground(frame.getBackground());
-		squareSize = Math.min(frame.getHeight() / tetris.getBoardHeight(), frame.getWidth() / tetris.getBoardWidth());
-
-		initBoardPanel();
-		initInfoPanel();
 		
 		addKeyListener(new TetrisListener());
 	}
@@ -37,6 +45,11 @@ public class TetrisPanel extends JPanel implements ActionListener {
 		timer = new Timer(50, this);
 		timer.setDelay(tetris.getDelayInMillis());
 		timer.start();
+		squareSize = Math.min((frame.getHeight() - frame.getInsets().top) / tetris.getBoardHeight(), frame.getWidth() / tetris.getBoardWidth());
+
+		initBoardPanel();
+		initInfoPanel();
+
 		requestFocusInWindow();
 	}
 	

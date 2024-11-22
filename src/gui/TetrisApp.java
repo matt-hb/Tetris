@@ -165,7 +165,6 @@ public class TetrisApp extends JFrame {
 		tetris = new TetrisPanel(this);
 		tetris.setPreferredSize(getSize());
 		add(tetris, "game");
-		pack();
 	}
 
 	private void makeLeaderBoard() {
