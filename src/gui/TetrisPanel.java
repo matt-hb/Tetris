@@ -65,7 +65,7 @@ public class TetrisPanel extends JPanel implements ActionListener {
 		initBoardPanel();
 		initInfoPanel();
 
-		timer = new Timer(tetris.getDelayInMillis(), this);
+		timer = new Timer(0, this);
 		timer.start();
 
 		requestFocusInWindow();
