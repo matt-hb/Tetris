@@ -159,10 +159,14 @@ public class TetrisPanel extends JPanel implements ActionListener {
 		// add rigid area to push the back button to the bottom
 		infoPanel.add(Box.createRigidArea(new Dimension()), gbc);
 
-		// add back button to return to main menu with really small weightY to make sure it's at the bottom
+		// add back button that stops the game clock and returns to main menu with really small weightY to make sure it's at the bottom
 		gbc.weighty = 0.1;
 		JButton backButton = new JButton("Back");
-		backButton.addActionListener(e -> frame.returnToMainMenu(TetrisApp.QUIT_FROM_GAME));
+		backButton.addActionListener(e -> {
+			timer.stop();
+			removeKeyListener(getKeyListeners()[0]);
+			frame.returnToMainMenu(TetrisApp.QUIT_FROM_GAME);
+		});
 		backButton.setPreferredSize(new Dimension(4*squareSize, 3*squareSize/2));
 		infoPanel.add(backButton, gbc);
 
