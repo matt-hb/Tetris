@@ -171,7 +171,6 @@ public class TetrisApp extends JFrame {
 			String name = JOptionPane.showInputDialog(this, text, "Game Over!", JOptionPane.PLAIN_MESSAGE);
 			if (name == null) name = "";
 			leaderBoard.addNewScore(name.trim(), score);
-			leaderBoard.refresh();
 		}
 	}
 	
@@ -257,7 +256,6 @@ public class TetrisApp extends JFrame {
 		leaderBoard = new LeaderBoardPanel(this);
 		leaderBoard.setPreferredSize(getSize());
 		leaderBoard.importScores("localScores.json");
-		leaderBoard.refresh();
 		add(leaderBoard, "leaderboard");
 	}
 
