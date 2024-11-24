@@ -45,7 +45,7 @@ public class Tetris {
 	 * This is used over just generating a random piece to ensure that the player
 	 * does not experience long droughts of any specific piece.
 	 */
-	private List<Tetromino.Shape> pieceBag = new ArrayList<>();
+	private List<Tetromino.Shape> pieceBag;
 
 	/**
 	 * A Random object used to shuffle the pieceBag.
