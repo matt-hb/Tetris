@@ -41,20 +41,45 @@ public class Tetris {
 
 	/**
 	 * A list of Tetromino shapes that will be used to determine the next piece to fall.
-	 * The list is shuffled and cycled through to provide a random sequence of pieces.
-	 * This method is used over just generating a random piece to ensure that the player
+	 * The list is shuffled and cycled through once it's empty to provide a random sequence of pieces.
+	 * This is used over just generating a random piece to ensure that the player
 	 * does not experience long droughts of any specific piece.
 	 */
-	private static List<Tetromino.Shape> pieceBag = new ArrayList<>();
+	private List<Tetromino.Shape> pieceBag = new ArrayList<>();
+
+	/**
+	 * A Random object used to shuffle the pieceBag.
+	 * This is used to allow for a seed to be set for testing purposes.
+	 */
+	private Random randomSource;
 
 	/**
 	 * Constructs a new Tetris object with a new empty Board. Sets all performance metrics to 0 and the game speed to 1.
 	 * Initializes the current and next pieces with the first two pieces from the pieceBag.
+	 * Sets the random source to a built in Random object.
 	 */
 	public Tetris() {
 		board = new Board();
 		score = linesClearedTotal = linesClearedOnLevel = 0;
 		gameSpeed = 1;
+		randomSource = new Random();
+		initPieceBag();
+		nextPiece = new Tetromino(pullFromPieceBag());
+		newPiece();
+	}
+
+	/**
+	 * Constructs a new Tetris object with a new empty Board. Sets all performance metrics to 0 and the game speed to 1.
+	 * Initializes the current and next pieces with the first two pieces from the pieceBag.
+	 * Sets the random source to a given Random object.
+	 * Protected scope because this is used for testing.
+	 */
+	protected Tetris(Random r) {
+		board = new Board();
+		score = linesClearedTotal = linesClearedOnLevel = 0;
+		gameSpeed = 1;
+		randomSource = r;
+		initPieceBag();
 		nextPiece = new Tetromino(pullFromPieceBag());
 		newPiece();
 	}
@@ -292,7 +317,7 @@ public class Tetris {
 	 * Pulls the next piece from the pieceBag, creating a new shuffled order when all pieces have been pulled.
 	 * @return the shape of the next piece to fall
 	 */
-	private static Tetromino.Shape pullFromPieceBag () {
+	private Tetromino.Shape pullFromPieceBag () {
 		if (pieceBag.isEmpty()) {
 			initPieceBag();
 		}
@@ -302,8 +327,8 @@ public class Tetris {
 	/**
 	 * Initializes the pieceBag with a shuffled list of all Tetromino shapes.
 	 */
-	private static void initPieceBag() {
+	private void initPieceBag() {
 		pieceBag = new ArrayList<>(List.of(Tetromino.Shape.values()));
-		Collections.shuffle(pieceBag);
+		Collections.shuffle(pieceBag, randomSource);
 	}
 }
